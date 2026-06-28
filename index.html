@@ -49,6 +49,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
   .desktop-stop-header { display: flex !important; }
   .tab-content { padding: 20px 28px; }
   .map-section { padding: 0 28px 20px; }
+  .mobile-tab-bar { display: none !important; }
+  .stop-mobile-nav { display: none !important; }
 }
 /* ══ MOBILE ══ */
 @media (max-width: 767px) {
@@ -57,7 +59,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
   .desktop-stop-header { display: none !important; }
   .view { display: none; }
   .view.active { display: block; }
-  body { padding-bottom: calc(70px + var(--safe-bottom)); }
+  body { padding-bottom: calc(64px + var(--safe-bottom)); }
   .tab-content { padding: 16px; }
   .map-section { padding: 0 16px 16px; }
 }
@@ -194,13 +196,71 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
 .btn-blue { background: var(--north); color: white; }
 .btn-amber { background: var(--amber); color: white; }
 
-/* Mobile bottom nav */
-.mobile-bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 10px 20px calc(10px + var(--safe-bottom)); z-index: 200; }
+/* Mobile bottom tab bar */
+.mobile-tab-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); display: flex; align-items: stretch; z-index: 300; padding-bottom: var(--safe-bottom); }
+.mobile-tab-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 4px 6px; border: none; background: none; cursor: pointer; gap: 3px; min-width: 0; }
+.mobile-tab-icon { font-size: 20px; line-height: 1; }
+.mobile-tab-label { font-size: 10px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+.mobile-tab-btn.active .mobile-tab-label { color: var(--navy); font-weight: 700; }
+.mobile-tab-btn.active .mobile-tab-icon { transform: scale(1.1); }
+
+/* Stop prev/next nav (only shown inside stop view on mobile) */
+.stop-mobile-nav { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px calc(10px + var(--safe-bottom)); background: var(--card); border-top: 1px solid var(--border); position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; }
 .nav-btn { padding: 9px 18px; border-radius: 10px; border: 1px solid var(--border); background: white; font-size: 13px; cursor: pointer; font-weight: 500; }
 .nav-btn:disabled { opacity: 0.3; }
 .nav-ctr { font-size: 12px; color: var(--muted); }
 
-/* ══ BUDGET VIEW ══ */
+/* ══ CALENDAR VIEW ══ */
+.cal-body { padding: 16px 16px 40px; }
+@media (min-width: 768px) { .cal-body { padding: 20px 28px 40px; } }
+
+/* Legend */
+.cal-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.cal-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); font-weight: 500; }
+.cal-legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+/* Day rows */
+.cal-day { display: flex; align-items: stretch; gap: 0; margin-bottom: 6px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--card); }
+.cal-day.today { border-color: var(--north); box-shadow: 0 0 0 2px var(--north-bg); }
+
+.cal-date-col { width: 52px; min-width: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 4px; background: var(--bg); border-right: 1px solid var(--border); flex-shrink: 0; }
+.cal-dow { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.cal-dom { font-size: 20px; font-weight: 800; color: var(--text); line-height: 1; }
+.cal-month { font-size: 9px; color: var(--muted); margin-top: 1px; }
+
+.cal-content { flex: 1; padding: 10px 14px; min-width: 0; }
+.cal-location { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.cal-detail { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+.cal-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; padding: 10px 14px 10px 8px; gap: 5px; flex-shrink: 0; }
+.cal-night-badge { font-size: 10px; font-weight: 700; padding: 4px 9px; border-radius: 8px; white-space: nowrap; letter-spacing: 0.02em; }
+.cal-drive-badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: var(--bg); color: var(--muted); border: 1px solid var(--border); white-space: nowrap; }
+
+/* Night type colors */
+.night-hotel { background: #e8f4fd; color: #1a5f8a; }
+.night-rorbu { background: #fde8e8; color: #8b2020; }
+.night-van { background: #e6f5ec; color: #1e5c3a; }
+.night-travel { background: #f1eefe; color: #5b3a8a; }
+
+/* Section dividers */
+.cal-section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 16px 0 6px; display: flex; align-items: center; gap: 8px; }
+.cal-section-line { flex: 1; height: 1px; background: var(--border); }
+.plan-body { padding: 20px; }
+.plan-section { margin-bottom: 28px; }
+.plan-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.plan-section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.plan-todo-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.plan-todo-item:last-child { border-bottom: none; }
+.plan-todo-text { flex: 1; font-size: 14px; line-height: 1.4; }
+.plan-todo-text.done { color: var(--muted); text-decoration: line-through; }
+.plan-todo-tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 5px; flex-shrink: 0; margin-top: 2px; }
+.stay-card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); padding: 14px 16px; margin-bottom: 8px; }
+.stay-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.stay-card-name { font-size: 14px; font-weight: 700; }
+.stay-card-location { font-size: 12px; color: var(--muted); margin-top: 1px; }
+.stay-card-status { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; }
+.stay-card-notes { font-size: 13px; color: var(--muted); line-height: 1.5; border-top: 1px solid var(--border); padding-top: 8px; margin-top: 2px; }
+.notes-card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
 .budget-body { padding: 20px; }
 .budget-total { background: var(--navy); color: white; border-radius: 14px; padding: 20px; margin-bottom: 20px; }
 .budget-total-label { font-size: 11px; color: #7ab3cf; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
@@ -241,6 +301,14 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     <button class="sidebar-nav-item" id="snav-budget" onclick="showPage('budget')">
       <div class="sidebar-nav-icon" style="background:var(--purple-bg)">💰</div>
       <div><div class="sidebar-nav-label">Budget</div></div>
+    </button>
+    <button class="sidebar-nav-item" id="snav-plan" onclick="showPage('plan')">
+      <div class="sidebar-nav-icon" style="background:#fff0e6">📋</div>
+      <div><div class="sidebar-nav-label">Trip planning</div></div>
+    </button>
+    <button class="sidebar-nav-item" id="snav-cal" onclick="showPage('cal')">
+      <div class="sidebar-nav-icon" style="background:#f0eafa">📅</div>
+      <div><div class="sidebar-nav-label">Calendar</div></div>
     </button>
   </div>
 
@@ -334,13 +402,30 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
       <div class="link-group">
         <div class="link-group-title">🚐 Van rental</div>
         <div class="imp-link-card">
-          <a class="imp-link-item" href="https://www.tjeldsundbrua.no" target="_blank">
+          <a class="imp-link-item" href="https://indiecampers.com/client/my-booking" target="_blank">
             <div class="imp-link-icon" style="background:var(--green-bg)">🚐</div>
             <div class="imp-link-info">
-              <div class="imp-link-name">Van rental confirmation</div>
-              <div class="imp-link-desc">Add your booking link or confirmation number here</div>
+              <div class="imp-link-name">Indie Campers — My Booking</div>
+              <div class="imp-link-desc">Booking code: <strong>XNGZE7</strong> · Pickup Sep 18, Tromsø · Booked by Allie</div>
             </div>
-            <div class="imp-link-badge" style="background:var(--amber-bg);color:var(--amber)">Add link</div>
+            <div class="imp-link-badge" style="background:var(--green-bg);color:var(--green)">Confirmed ✓</div>
+            <div class="imp-link-arrow">›</div>
+          </a>
+          <a class="imp-link-item" href="https://indiecampers.com/client/my-booking" target="_blank">
+            <div class="imp-link-icon" style="background:var(--amber-bg)">📋</div>
+            <div class="imp-link-info">
+              <div class="imp-link-name">Upload ID & driver's license</div>
+              <div class="imp-link-desc">Required before pickup — do this now via client area</div>
+            </div>
+            <div class="imp-link-badge" style="background:var(--amber-bg);color:var(--amber)">Action needed</div>
+            <div class="imp-link-arrow">›</div>
+          </a>
+          <a class="imp-link-item" href="https://help.indiecampers.com/hc/en-us" target="_blank">
+            <div class="imp-link-icon" style="background:var(--base-bg)">❓</div>
+            <div class="imp-link-info">
+              <div class="imp-link-name">Indie Campers Help & FAQs</div>
+              <div class="imp-link-desc">Online check-in opens ~Aug 19 (30 days before pickup)</div>
+            </div>
             <div class="imp-link-arrow">›</div>
           </a>
         </div>
@@ -506,7 +591,32 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     <div class="budget-body" id="budgetBody"></div>
   </div>
 
-  <!-- STOP VIEW -->
+  <!-- PLANNING -->
+  <div id="planView" class="view">
+    <div class="page-header mobile-only">
+      <div class="pg-eyebrow">Before you go</div>
+      <div class="pg-title">Trip planning 📋</div>
+    </div>
+    <div class="page-header-desk desktop-only">
+      <div class="pg-eyebrow">Before you go</div>
+      <div class="pg-title">Trip planning 📋</div>
+    </div>
+    <div class="plan-body" id="planBody"></div>
+  </div>
+
+  <!-- CALENDAR -->
+  <div id="calView" class="view">
+    <div class="page-header mobile-only">
+      <div class="pg-eyebrow">Sep 16–30, 2026</div>
+      <div class="pg-title">Calendar 📅</div>
+    </div>
+    <div class="page-header-desk desktop-only">
+      <div class="pg-eyebrow">Sep 16–30, 2026</div>
+      <div class="pg-title">Calendar 📅</div>
+    </div>
+    <div class="cal-body" id="calBody"></div>
+  </div>
+
   <div id="stopView" class="view">
     <div class="mobile-header mobile-only">
       <button class="mobile-back" onclick="showPage('home')">← Overview</button>
@@ -516,13 +626,45 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     <div class="map-section" id="stopMapSection"></div>
     <div class="tabs" id="stopTabs"></div>
     <div class="tab-content" id="stopTabContent"></div>
-    <div class="mobile-bottom-nav mobile-only">
+    <div class="stop-mobile-nav" id="stopMobileNav">
       <button class="nav-btn" id="mobPrev" onclick="navigate(-1)">← Prev</button>
       <div class="nav-ctr" id="mobCtr"></div>
       <button class="nav-btn" id="mobNext" onclick="navigate(1)">Next →</button>
     </div>
   </div>
 
+</div>
+
+<!-- MOBILE TAB BAR (mobile only) -->
+<div class="mobile-tab-bar" id="mobileTabBar">
+  <button class="mobile-tab-btn active" id="mtab-home" onclick="showPage('home')">
+    <span class="mobile-tab-icon">🗺️</span>
+    <span class="mobile-tab-label">Overview</span>
+  </button>
+  <button class="mobile-tab-btn" id="mtab-links" onclick="showPage('links')">
+    <span class="mobile-tab-icon">🔗</span>
+    <span class="mobile-tab-label">Links</span>
+  </button>
+  <button class="mobile-tab-btn" id="mtab-pack" onclick="showPage('pack')">
+    <span class="mobile-tab-icon">🎒</span>
+    <span class="mobile-tab-label">Packing</span>
+  </button>
+  <button class="mobile-tab-btn" id="mtab-budget" onclick="showPage('budget')">
+    <span class="mobile-tab-icon">💰</span>
+    <span class="mobile-tab-label">Budget</span>
+  </button>
+  <button class="mobile-tab-btn" id="mtab-plan" onclick="showPage('plan')">
+    <span class="mobile-tab-icon">📋</span>
+    <span class="mobile-tab-label">Planning</span>
+  </button>
+  <button class="mobile-tab-btn" id="mtab-cal" onclick="showPage('cal')">
+    <span class="mobile-tab-icon">📅</span>
+    <span class="mobile-tab-label">Calendar</span>
+  </button>
+  <button class="mobile-tab-btn" id="mtab-stop" onclick="showPage('stop')">
+    <span class="mobile-tab-icon">📍</span>
+    <span class="mobile-tab-label">Stops</span>
+  </button>
 </div>
 
 <script>
@@ -547,76 +689,81 @@ const SEC = {
 
 // ══ PACKING DATA ══
 const PACK_GROUPS = [
-  { id:"van", label:"🚐 Van life essentials", items:[
-    {t:"Sleeping bag (rated to 20°F / -6°C)",tag:"essential"},
-    {t:"Sleeping pad or mattress",tag:"essential"},
-    {t:"Pillow"},
-    {t:"Camp chairs"},
+  { id:"van", label:"🚐 Indie Campers poptop — extras to bring", items:[
+    {t:"Sleeping bag (rated to 20°F / -6°C) — van has bedding but backup is smart",tag:"essential"},
+    {t:"Extra pillow"},
+    {t:"Camp chairs — van won't have these",tag:"essential"},
+    {t:"Small folding table for outdoor cooking"},
     {t:"Headlamps + spare batteries",tag:"essential"},
     {t:"Power bank (large — 20,000mAh+)",tag:"essential"},
     {t:"Car phone mount"},
-    {t:"Reusable water bottles"},
-    {t:"Cooler or cold bag for food"},
-    {t:"Cooking pot + pan"},
-    {t:"Camp stove + fuel canisters"},
-    {t:"Utensils, bowls, mugs"},
-    {t:"Dish soap + sponge"},
+    {t:"Reusable water bottles — 1L each minimum"},
+    {t:"Extra food storage containers / zip bags"},
+    {t:"Dish soap + sponge (van kit may be minimal)"},
     {t:"Trash bags"},
-    {t:"Toilet paper + trowel (wild camping)"},
+    {t:"Toilet paper backup"},
+    {t:"Leveling wedges for uneven parking spots"},
+    {t:"Doormat — keeps mud out of the van"},
   ]},
   { id:"clothes", label:"👕 Clothing (September = cold + wet)", items:[
     {t:"Merino wool base layers (top + bottom)",tag:"essential"},
-    {t:"Mid layer fleece or down jacket"},
+    {t:"Mid layer fleece or down jacket",tag:"essential"},
     {t:"Waterproof shell jacket",tag:"essential"},
-    {t:"Waterproof pants"},
+    {t:"Waterproof pants",tag:"essential"},
     {t:"Hiking boots (waterproof)",tag:"essential"},
-    {t:"Camp/van shoes or Crocs"},
+    {t:"Camp/van shoes or Crocs — for in and around the van"},
     {t:"Warm hat + gloves",tag:"essential"},
     {t:"Buff / neck gaiter"},
-    {t:"Wool socks × 5"},
+    {t:"Wool socks × 5+"},
     {t:"Swimwear (hot springs / brave dips)"},
+    {t:"1 nicer outfit for rorbu dinners / Tromsø restaurants"},
     {t:"Jeans or casual pants"},
     {t:"Casual tops × 3–4"},
   ]},
   { id:"hike", label:"🥾 Hiking & outdoors", items:[
     {t:"Daypack (20–30L)",tag:"essential"},
-    {t:"Trekking poles"},
-    {t:"Trail snacks & energy bars"},
+    {t:"Trekking poles — especially for Reinebringen"},
+    {t:"Trail snacks & energy bars",tag:"essential"},
     {t:"First aid kit",tag:"essential"},
     {t:"Blister plasters (Compeed)",tag:"essential"},
     {t:"Sunscreen (yes, even in Norway)"},
     {t:"Insect repellent"},
     {t:"Rain cover for pack"},
-    {t:"Offline maps downloaded (Maps.me or AllTrails)"},
+    {t:"Offline maps downloaded (AllTrails + Maps.me)"},
+    {t:"Headtorch for early sunrise hikes",tag:"essential"},
   ]},
   { id:"tech", label:"📱 Tech & documents", items:[
     {t:"Passport",tag:"essential"},
     {t:"Travel insurance docs + emergency number",tag:"essential"},
-    {t:"European plug adapter"},
-    {t:"Camera + memory cards"},
-    {t:"Drone (check Norway airspace rules!)"},
+    {t:"Indie Campers booking confirmation",tag:"essential"},
+    {t:"European plug adapter (Type F)",tag:"essential"},
+    {t:"Camera + extra memory cards"},
+    {t:"Drone (check Norway airspace rules — many restrictions in Lofoten)"},
     {t:"Laptop / tablet if needed"},
-    {t:"Car charger / USB hub"},
+    {t:"USB-C hub / multi-port charger"},
   ]},
   { id:"misc", label:"💊 Health & misc", items:[
     {t:"Prescription medications × trip + extra",tag:"essential"},
     {t:"Pain reliever (ibuprofen / paracetamol)"},
-    {t:"Anti-nausea (ferry crossings)"},
+    {t:"Anti-nausea tablets (ferry crossings)"},
     {t:"Hand sanitizer"},
-    {t:"Norwegian kroner cash (backup)"},
-    {t:"Snacks from home — expensive in Norway!"},
+    {t:"Norwegian kroner cash — some places card-only, some cash-only"},
+    {t:"Snacks from home — Norway is 2–3× US prices"},
+    {t:"Small dry bag for hikes in rain"},
   ]}
 ];
 
 // ══ BUDGET DATA ══
 const BUDGET_CATS = [
-  { id:"van", icon:"🚐", name:"Van rental", sub:"Total for the trip" },
-  { id:"fuel", icon:"⛽", name:"Fuel", sub:"~560 mi, Norway prices ~$2.50/L" },
-  { id:"food", icon:"🍜", name:"Food & groceries", sub:"Per day × 14" },
-  { id:"stays", icon:"🛖", name:"Stays & campsites", sub:"Rorbu, campsites, etc." },
-  { id:"ferries", icon:"⛴️", name:"Ferries", sub:"Andenes–Fiskebøl + others" },
-  { id:"activities", icon:"🥾", name:"Activities", sub:"Hikes, whale watching, etc." },
-  { id:"misc", icon:"🛍️", name:"Misc & souvenirs", sub:"Buffer for surprises" },
+  { id:"van", icon:"🚐", name:"Indie Campers van rental", sub:"11 days — confirm total on booking" },
+  { id:"fuel", icon:"⛽", name:"Fuel", sub:"~560 mi, Norway diesel ~$2.50/L (~$200–250 est.)" },
+  { id:"food", icon:"🍜", name:"Food & groceries", sub:"Mix of van cooking + eating out (~$60–80/day for 2)" },
+  { id:"tromso-hotel", icon:"🏨", name:"Tromsø hotel (2 nights)", sub:"Malangen or Sommarøy — ~$200–350/night" },
+  { id:"rorbu", icon:"🛖", name:"Rorbu in Reine (2–3 nights)", sub:"Eliassen or Sakrisøy — ~$200–300/night" },
+  { id:"svolvaer-stay", icon:"🛏️", name:"Svolvær stay (2 nights)", sub:"Svinøya Rorbuer or similar — ~$150–200/night" },
+  { id:"ferries", icon:"⛴️", name:"Ferries", sub:"Andenes–Fiskebøl + any others" },
+  { id:"activities", icon:"🥾", name:"Activities & experiences", sub:"Whale watching, kayak, northern lights tour" },
+  { id:"misc", icon:"🛍️", name:"Misc & souvenirs", sub:"Buffer — Norway will surprise you" },
 ];
 
 // ══ STATE ══
@@ -638,21 +785,35 @@ if (!saved._pack) data._pack = {};
 else data._pack = saved._pack;
 if (!saved._budget) data._budget = {};
 else data._budget = saved._budget;
+if (!saved._plan) data._plan = {};
+else data._plan = saved._plan;
 saveData();
 
 // ══ PAGE ROUTING ══
-const PAGES = ["home","links","pack","budget","stop"];
+const PAGES = ["home","links","pack","budget","plan","cal","stop"];
 function showPage(page, stopIdx) {
   currentPage = page;
   PAGES.forEach(p => {
     const el = document.getElementById(p+"View");
     if (el) el.classList.toggle("active", p === page);
   });
-  // Update sidebar nav
-  ["home","links","pack","budget"].forEach(p => {
+
+  // Sync sidebar nav items (desktop)
+  ["home","links","pack","budget","plan","cal"].forEach(p => {
     const btn = document.getElementById("snav-"+p);
     if (btn) btn.classList.toggle("active", p === page);
   });
+
+  // Sync mobile tab bar
+  ["home","links","pack","budget","plan","cal","stop"].forEach(p => {
+    const btn = document.getElementById("mtab-"+p);
+    if (btn) btn.classList.toggle("active", p === page);
+  });
+
+  // Show/hide the stop prev/next nav only on stop page
+  const stopNav = document.getElementById("stopMobileNav");
+  if (stopNav) stopNav.style.display = page === "stop" ? "flex" : "none";
+
   // Deactivate sidebar stops if not on stop page
   document.querySelectorAll(".sidebar-stop").forEach(el => el.classList.toggle("active", page==="stop" && parseInt(el.dataset.idx)===currentIdx));
   document.getElementById("deskPrev").disabled = page !== "stop" || currentIdx === 0;
@@ -660,6 +821,8 @@ function showPage(page, stopIdx) {
 
   if (page === "pack") renderPacking();
   if (page === "budget") renderBudget();
+  if (page === "plan") renderPlan();
+  if (page === "cal") renderCalendar();
   if (page === "stop") {
     if (stopIdx !== undefined) currentIdx = stopIdx;
     currentTab = "overview";
@@ -861,8 +1024,209 @@ function addHike() { const el=document.getElementById("newHike"); const v=el.val
 function addLink() { const label=document.getElementById("newLinkLabel")?.value.trim(); const url=document.getElementById("newLinkUrl")?.value.trim(); if(!label||!url) return; data[sid()].links.push({label,url}); saveData(); renderTabContent(); }
 function delLink(i) { data[sid()].links.splice(i,1); saveData(); renderTabContent(); }
 
+// ══ PLANNING DATA ══
+const PRE_TRIP_TODOS = [
+  { t:"Book Andenes–Fiskebøl ferry", tag:"urgent", link:"https://www.torghatten-nord.no/en" },
+  { t:"Book Sakrisøy Rorbuer — 1 night Sep 27 (the ONE rorbu splurge)", tag:"urgent", link:"http://www.sakrisoy-rorbuer.no" },
+  { t:"Book hotel in Tromsø — Malangen Resort or Sommarøy Arctic Hotel (2 nights Sep 16–18)", tag:"urgent" },
+  { t:"Book hotel in Tromsø for birthday night Sep 29 (1 night)", tag:"urgent" },
+  { t:"✅ Indie Campers van booked — code XNGZE7, pickup Sep 18 Tromsø", tag:"urgent", link:"https://indiecampers.com/client/my-booking" },
+  { t:"Upload ID/Passport + driver's license to Indie Campers client area (do this now!)", tag:"urgent", link:"https://indiecampers.com/client/my-booking" },
+  { t:"Complete online check-in — opens ~Aug 19 (30 days before pickup)", tag:"soon", link:"https://indiecampers.com/client/my-booking" },
+  { t:"Get travel insurance", tag:"urgent" },
+  { t:"Check passport expiry (needs 6 months past Sep 30)", tag:"urgent" },
+  { t:"Download offline Norway maps (Maps.me or Google Maps offline)", tag:"soon" },
+  { t:"Download Space Weather Live app for northern lights", tag:"soon" },
+  { t:"Download AllTrails trails: Segla, Reinebringen, Bleik, Festvågtind", tag:"soon" },
+  { t:"Download Park4Night app — find best van camping spots", tag:"soon", link:"https://park4night.com" },
+  { t:"Notify bank/credit cards of Norway travel dates", tag:"soon" },
+  { t:"Get some Norwegian kroner cash for backup", tag:"soon" },
+  { t:"Research whale watching in Andenes — book if interested", tag:"optional", link:"https://www.whalesafari.no" },
+  { t:"Book dinner at Emmas Under, Tromsø for Jill's birthday (Sep 29)", tag:"soon", link:"https://www.emmasdrommekjokken.no" },
+  { t:"Check Indie Campers app — learn van systems before pickup", tag:"soon" },
+  { t:"Pack camp chairs — van doesn't include them", tag:"soon" },
+];
+
+const STAY_RECS = [
+  { name:"Malangen Resort", location:"Tromsø area — Sep 16–18", notes:"Luxury wilderness lodge on a fjord peninsula, ~45 min from Tromsø. Stunning northern lights spot. Worth it for the arrival nights when you're jetlagged and want a proper bed.", status:"considering", statusStyle:"background:var(--amber-bg);color:var(--amber)" },
+  { name:"Sommarøy Arctic Hotel", location:"Tromsø area — Sep 16–18", notes:"Island hotel connected by bridge near Tromsø, right on the water. More classic hotel feel, closer to city. Good alternative to Malangen.", status:"considering", statusStyle:"background:var(--amber-bg);color:var(--amber)" },
+  { name:"Indie Campers Poptop 4 🚐", location:"Everywhere else — Sep 18–27 & Sep 28", notes:"Van camp almost the whole trip! Allemannsretten (Norway's right to roam) means you can park almost anywhere in nature. Use Park4Night or Bobilguide to find the best spots. Wake up with fjord views every morning.", status:"van camping ✓", statusStyle:"background:var(--green-bg);color:var(--green)" },
+  { name:"Sakrisøy Rorbuer ⭐", location:"Sakrisøy / Reine — Sep 27 (1 night)", notes:"The ONE splurge night. Yellow rorbu cabins right on the water, the most photogenic in Lofoten. Best fish soup restaurant in Norway literally next door. Easier to book than Eliassen. Book at sakrisoy-rorbuer.no", status:"book now!", statusStyle:"background:var(--lofoten-bg);color:var(--lofoten)" },
+  { name:"Tromsø hotel (birthday night)", location:"Tromsø — Sep 29", notes:"One night back in Tromsø for Jill's birthday — Emmas Under dinner, possible northern lights tour. Any central Tromsø hotel works, or book Malangen again if you loved it.", status:"book soon", statusStyle:"background:var(--north-bg);color:var(--north)" },
+];
+
+function renderPlan() {
+  const pd = data._plan || {};
+
+  // Count pre-trip todos
+  const urgent = PRE_TRIP_TODOS.filter(t => t.tag === "urgent");
+  const soon = PRE_TRIP_TODOS.filter(t => t.tag === "soon");
+  const optional = PRE_TRIP_TODOS.filter(t => t.tag === "optional");
+  const doneCount = PRE_TRIP_TODOS.filter((t, i) => pd["todo_"+i]).length;
+
+  function todoHTML(items, offset) {
+    return items.map((item, j) => {
+      const i = PRE_TRIP_TODOS.indexOf(item);
+      const done = pd["todo_"+i] || false;
+      const tagColors = { urgent:"background:#fde8e8;color:var(--lofoten)", soon:"background:var(--amber-bg);color:var(--amber)", optional:"background:var(--green-bg);color:var(--green)" };
+      return `<div class="plan-todo-item">
+        <div class="checkbox ${done?"checked":""}" onclick="togglePlanTodo(${i})" style="margin-top:1px"></div>
+        <div style="flex:1">
+          <div class="plan-todo-text ${done?"done":""}">${esc(item.t)}${item.link?` <a href="${item.link}" target="_blank" style="color:var(--north);font-size:12px;margin-left:4px">↗</a>`:""}</div>
+        </div>
+        <div class="plan-todo-tag" style="${tagColors[item.tag]}">${item.tag}</div>
+      </div>`;
+    }).join("");
+  }
+
+  let html = `
+  <div class="plan-section">
+    <div class="plan-section-header">
+      <div class="plan-section-title">✅ Pre-trip to dos</div>
+      <div style="font-size:12px;color:var(--muted)">${doneCount}/${PRE_TRIP_TODOS.length} done</div>
+    </div>
+    <div class="card">
+      <div style="padding:10px 16px 4px;font-size:11px;font-weight:600;color:var(--lofoten);text-transform:uppercase;letter-spacing:0.08em">🔴 Urgent — book soon</div>
+      ${todoHTML(urgent)}
+      <div style="padding:10px 16px 4px;font-size:11px;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em">🟡 Soon</div>
+      ${todoHTML(soon)}
+      <div style="padding:10px 16px 4px;font-size:11px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:0.08em">🟢 Optional / nice to have</div>
+      ${todoHTML(optional)}
+    </div>
+  </div>
+
+  <div class="plan-section">
+    <div class="plan-section-title" style="margin-bottom:10px">🛖 Where to stay</div>
+    ${STAY_RECS.map(s => `
+      <div class="stay-card">
+        <div class="stay-card-top">
+          <div>
+            <div class="stay-card-name">${esc(s.name)}</div>
+            <div class="stay-card-location">${esc(s.location)}</div>
+          </div>
+          <div class="stay-card-status" style="${s.statusStyle}">${s.status}</div>
+        </div>
+        <div class="stay-card-notes">${esc(s.notes)}</div>
+      </div>`).join("")}
+  </div>
+
+  <div class="plan-section">
+    <div class="plan-section-title" style="margin-bottom:10px">📝 General notes</div>
+    <div class="notes-card">
+      <textarea style="width:100%;min-height:160px;padding:14px 16px;border:none;font-size:14px;color:var(--text);background:var(--card);outline:none;font-family:inherit;line-height:1.65;resize:vertical;border-radius:12px" 
+        placeholder="Anything else — ideas, Allie's suggestions, things to research..." 
+        oninput="updatePlanNotes(this.value)">${esc(pd.notes||"")}</textarea>
+    </div>
+  </div>`;
+
+  document.getElementById("planBody").innerHTML = html;
+}
+
+function togglePlanTodo(i) {
+  if (!data._plan) data._plan = {};
+  data._plan["todo_"+i] = !data._plan["todo_"+i];
+  saveData(); renderPlan();
+}
+function updatePlanNotes(v) {
+  if (!data._plan) data._plan = {};
+  data._plan.notes = v;
+  saveData();
+}
+
+// ══ CALENDAR ══
+const CAL_DAYS = [
+  { date:"2026-09-16", dow:"Wed", dom:"16", travel:"✈️ Fly to Tromsø", location:"Tromsø", detail:"Arrive, check in. Rest up — long travel day.", night:"hotel", nightLabel:"🏨 Hotel", section:"arrival" },
+  { date:"2026-09-17", dow:"Thu", dom:"17", location:"Tromsø", detail:"Explore city. Arctic Cathedral, cable car up Storsteinen, good dinner out.", night:"hotel", nightLabel:"🏨 Hotel" },
+  { date:"2026-09-18", dow:"Fri", dom:"18", travel:"🚐 Pick up van → Lyngen → Senja", location:"Senja Island", detail:"Pick up Indie Campers van. Drive through Lyngen Alps (photo stop). Arrive Senja, find a wild camp spot with a view.", night:"van", nightLabel:"🚐 Van camp", section:"north" },
+  { date:"2026-09-19", dow:"Sat", dom:"19", location:"Senja Island", detail:"Hike Segla (3–4 hrs). Afternoon in Husøy fishing village. Golden hour at Tungeneset viewpoint.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-20", dow:"Sun", dom:"20", travel:"🚐 Drive Senja → Andøya (~3 hrs)", location:"Andøya", detail:"Morning on Senja, drive north to Andøya. Bleik beach and sea stacks in the evening.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-21", dow:"Mon", dom:"21", location:"Andøya", detail:"Andenes whale watching or coastal walks. Check Fiskebøl ferry times for tomorrow.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-22", dow:"Tue", dom:"22", travel:"⛴️ Ferry + drive to Svolvær (~4 hrs)", location:"Svolvær", detail:"Andenes–Fiskebøl ferry (book ahead!). Drive south to Svolvær. Find a van spot near the harbour.", night:"van", nightLabel:"🚐 Van camp", section:"lofoten" },
+  { date:"2026-09-23", dow:"Wed", dom:"23", location:"Svolvær area", detail:"Festvågtind hike. Explore Svolvær harbour. Drive to Henningsvær for sunset.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-24", dow:"Thu", dom:"24", location:"Henningsvær", detail:"Explore Henningsvær — football pitch on the rocks, harbour walk, coffee. Van camp nearby.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-25", dow:"Fri", dom:"25", travel:"🚐 Drive E10 west toward Reine", location:"Near Reine", detail:"Scenic drive along E10. Find a wild camp spot near Reine with mountain views. Scout Reinebringen trail for tomorrow.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-26", dow:"Sat", dom:"26", location:"Reine", detail:"Early sunrise hike up Reinebringen. Afternoon exploring Reine village. Fish soup at Sakrisøy restaurant.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-27", dow:"Sun", dom:"27", travel:"🛖 Check in to Sakrisøy Rorbuer", location:"Sakrisøy / Reine", detail:"Day trip to Å (westernmost point). Kayak if weather allows. Check into Sakrisøy Rorbuer — the one splurge night. Dinner at the rorbu restaurant.", night:"rorbu", nightLabel:"🛖 Rorbu ✨" },
+  { date:"2026-09-28", dow:"Mon", dom:"28", travel:"🚐 Check out → start drive north", location:"En route to Tromsø", detail:"Wake up in the rorbu, slow breakfast, soak it in. Check out, start the long drive north (~6 hrs). Stop at Nusfjord on the way. Van camp somewhere scenic.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-29", dow:"Tue", dom:"29", travel:"🚐 Drive to Tromsø + drop van", location:"Tromsø", detail:"🎂 JILL'S BIRTHDAY! Finish drive to Tromsø. Drop van. Freshen up at hotel. Dinner at Emmas Under. Northern lights tour if skies are clear.", night:"hotel", nightLabel:"🏨 Hotel", section:"return", birthday:true },
+  { date:"2026-09-30", dow:"Wed", dom:"30", travel:"✈️ Fly out", location:"Tromsø → Oslo", detail:"Jill flies home. Fly to Oslo. End of an incredible trip!", night:"travel", nightLabel:"✈️ Flying", section:"end" },
+];
+
+function renderCalendar() {
+  const sections = { arrival:"🏔️ Tromsø", north:"⛰️ Northern route", lofoten:"🎣 Lofoten Islands", return:"🏠 Return", end:"✈️ Fly out" };
+  let currentSection = null;
+
+  let html = `
+  <div class="cal-legend">
+    <div class="cal-legend-item"><div class="cal-legend-dot night-hotel"></div>Hotel</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot night-rorbu"></div>Rorbu</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot night-van"></div>Van camping 🚐</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot night-travel"></div>Travel day</div>
+  </div>`;
+
+  CAL_DAYS.forEach(day => {
+    // Section header
+    if (day.section && day.section !== currentSection) {
+      currentSection = day.section;
+      html += `<div class="cal-section-label">${sections[day.section]}<div class="cal-section-line"></div></div>`;
+    }
+
+    const travelHtml = day.travel
+      ? `<div style="font-size:11px;font-weight:600;color:var(--purple);background:var(--purple-bg);border-radius:5px;padding:2px 7px;display:inline-block;margin-bottom:4px">${esc(day.travel)}</div>`
+      : "";
+
+    const birthdayHtml = day.birthday
+      ? `<span style="font-size:12px;font-weight:700;color:#c05621;background:#fff0e6;border-radius:5px;padding:2px 8px">🎂 Jill's birthday!</span>`
+      : "";
+
+    html += `<div class="cal-day">
+      <div class="cal-date-col">
+        <div class="cal-dow">${day.dow}</div>
+        <div class="cal-dom">${day.dom}</div>
+        <div class="cal-month">Sep</div>
+      </div>
+      <div class="cal-content">
+        ${travelHtml}
+        <div class="cal-location">${esc(day.location)} ${birthdayHtml}</div>
+        <div class="cal-detail">${esc(day.detail)}</div>
+      </div>
+      <div class="cal-right">
+        <div class="cal-night-badge night-${day.night}">${day.nightLabel}</div>
+      </div>
+    </div>`;
+  });
+
+  // Summary stats
+  const hotels = CAL_DAYS.filter(d => d.night === "hotel").length;
+  const rorbuer = CAL_DAYS.filter(d => d.night === "rorbu").length;
+  const vanNights = CAL_DAYS.filter(d => d.night === "van").length;
+
+  html += `<div style="margin-top:20px;padding:16px;background:var(--card);border-radius:12px;border:1px solid var(--border)">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Nights breakdown</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+      <div style="text-align:center;padding:12px 8px;background:var(--north-bg);border-radius:10px">
+        <div style="font-size:22px;font-weight:800;color:var(--north)">${hotels}</div>
+        <div style="font-size:11px;color:var(--north);margin-top:2px">Hotel nights</div>
+      </div>
+      <div style="text-align:center;padding:12px 8px;background:var(--lofoten-bg);border-radius:10px">
+        <div style="font-size:22px;font-weight:800;color:var(--lofoten)">${rorbuer}</div>
+        <div style="font-size:11px;color:var(--lofoten);margin-top:2px">Rorbu nights</div>
+      </div>
+      <div style="text-align:center;padding:12px 8px;background:var(--green-bg);border-radius:10px">
+        <div style="font-size:22px;font-weight:800;color:var(--green)">${vanNights}</div>
+        <div style="font-size:11px;color:var(--green);margin-top:2px">Van nights</div>
+      </div>
+    </div>
+  </div>`;
+
+  document.getElementById("calBody").innerHTML = html;
+}
+
 // ══ INIT ══
 document.getElementById("homeMapFrame").height = isMobile() ? 240 : 320;
+// Hide stop nav initially
+const sn = document.getElementById("stopMobileNav");
+if (sn) sn.style.display = "none";
 buildHomeStopList();
 buildSidebar();
 showPage("home");
