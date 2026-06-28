@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Norway 🇳🇴">
+<title>Norway Trip</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+:root {
+  --bg: #F2EFE9;
+  --card: #FFFFFF;
+  --text: #1A1A1A;
+  --muted: #8A8A8A;
+  --border: #E2DDD5;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --north: #1a5f8a;
+  --north-bg: #ddeef9;
+  --north-border: #7bbfdf;
+  --lofoten: #8b2020;
+  --lofoten-bg: #fde8e8;
+  --lofoten-border: #f08080;
+  --base: #3d4f63;
+  --base-bg: #e8edf3;
+  --base-border: #a0aec0;
+  --green: #1e5c3a;
+  --green-bg: #e6f5ec;
+  --sidebar-w: 280px;
+}
+html, body { height: 100%; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+
+/* ── DESKTOP ── */
+@media (min-width: 768px) {
+  body { display: flex; height: 100vh; overflow: hidden; }
+  #sidebar { width: var(--sidebar-w); min-width: var(--sidebar-w); height: 100vh; overflow-y: auto; background: var(--card); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+  #main { flex: 1; height: 100vh; overflow-y: auto; }
+  .mobile-only { display: none !important; }
+  .desktop-stop-header { display: flex !important; align-items: flex-start; justify-content: space-between; padding: 24px 28px 0; }
+  .tab-content { padding: 20px 28px; }
+  .map-section { padding: 0 28px 20px; }
+  #homeView { display: none !important; }
+  #stopView { display: block !important; }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 767px) {
+  #sidebar { display: none; }
+  .desktop-only { display: none !important; }
+  .desktop-stop-header { display: none !important; }
+  .view { display: none; }
+  .view.active { display: block; }
+  body { padding-bottom: calc(70px + var(--safe-bottom)); }
+  .tab-content { padding: 16px; }
+  .map-section { padding: 0 16px 16px; }
+}
+
+/* ── SIDEBAR ── */
+.sidebar-header { padding: 20px 16px 14px; border-bottom: 1px solid var(--border); background: #0e2a3b; color: white; flex-shrink: 0; }
+.sidebar-eyebrow { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #7ab3cf; font-weight: 600; margin-bottom: 3px; }
+.sidebar-title { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+.sidebar-sub { font-size: 12px; color: #7ab3cf; margin-top: 2px; }
+.sidebar-stops { padding: 10px 8px; flex: 1; }
+.sidebar-stop { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 10px; cursor: pointer; transition: background 0.12s; margin-bottom: 2px; }
+.sidebar-stop:hover { background: var(--bg); }
+.sidebar-stop.active { background: var(--bg); }
+.snum { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
+.sidebar-stop-name { font-size: 13px; font-weight: 600; }
+.sidebar-stop-dates { font-size: 11px; color: var(--muted); }
+.sidebar-nav { display: flex; gap: 8px; padding: 10px 8px 16px; flex-shrink: 0; }
+.sidebar-nav-btn { flex: 1; padding: 8px; border-radius: 8px; border: 1px solid var(--border); background: white; font-size: 12px; cursor: pointer; font-weight: 500; }
+.sidebar-nav-btn:disabled { opacity: 0.3; }
+
+/* ── HOME (mobile only) ── */
+.home-header { padding: calc(20px + var(--safe-top)) 20px 16px; background: #0e2a3b; color: white; }
+.home-eyebrow { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7ab3cf; font-weight: 600; margin-bottom: 4px; }
+.home-title { font-size: 24px; font-weight: 800; letter-spacing: -0.03em; }
+.home-sub { font-size: 13px; color: #7ab3cf; margin-top: 2px; }
+.home-map-wrap { background: #0e2a3b; padding: 0 0 16px; }
+.gmap-frame { width: 100%; border: none; display: block; }
+.trip-summary { padding: 16px 16px 4px; }
+.summary-title { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.stop-cards { display: flex; flex-direction: column; gap: 8px; padding-bottom: 20px; }
+.stop-card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); padding: 13px 16px; display: flex; align-items: center; gap: 13px; cursor: pointer; transition: transform 0.1s; }
+.stop-card:active { transform: scale(0.98); }
+.stop-num-card { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.stop-card-name { font-size: 15px; font-weight: 600; }
+.stop-card-dates { font-size: 12px; color: var(--muted); margin-top: 1px; }
+.stop-card-arrow { color: var(--muted); font-size: 18px; }
+
+/* ── STOP VIEW ── */
+.mobile-header { background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.mobile-back { display: flex; align-items: center; gap: 6px; padding: calc(14px + var(--safe-top)) 16px 10px; font-size: 13px; color: var(--muted); background: none; border: none; cursor: pointer; width: 100%; }
+.mobile-stop-title { padding: 0 16px 12px; display: flex; align-items: flex-start; justify-content: space-between; }
+.mobile-stop-name { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+.mobile-stop-dates { font-size: 12px; color: var(--muted); margin-top: 1px; }
+.desktop-stop-header { display: none; }
+.dsk-stop-name { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+.dsk-stop-dates { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.stop-badge { font-size: 10px; font-weight: 600; padding: 5px 12px; border-radius: 12px; letter-spacing: 0.05em; text-transform: uppercase; flex-shrink: 0; margin-top: 4px; }
+.map-section { }
+.map-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.map-frame-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+
+/* ── TABS ── */
+.tabs { display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; border-bottom: 1px solid var(--border); background: var(--card); }
+.tabs::-webkit-scrollbar { display: none; }
+.tab-btn { padding: 11px 16px; border: none; border-bottom: 2px solid transparent; background: none; font-size: 13px; color: var(--muted); cursor: pointer; white-space: nowrap; font-weight: 500; margin-bottom: -1px; }
+.tab-btn.active { color: var(--text); border-bottom-color: var(--text); font-weight: 600; }
+
+/* ── CONTENT ── */
+.note-box { padding: 12px 14px; border-radius: 10px; font-size: 13px; line-height: 1.65; border-left: 3px solid; margin-bottom: 14px; }
+.card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 10px; }
+.todo-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.todo-item:last-child { border-bottom: none; }
+.checkbox { width: 22px; height: 22px; border-radius: 6px; border: 1.5px solid var(--border); background: white; flex-shrink: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s; }
+.checkbox.checked { background: var(--green); border-color: var(--green); }
+.checkbox.checked::after { content: "✓"; color: white; font-size: 12px; font-weight: 700; }
+.todo-text { flex: 1; font-size: 14px; line-height: 1.4; }
+.todo-text.done { color: var(--muted); text-decoration: line-through; }
+.del-btn { color: #ccc; background: none; border: none; font-size: 22px; cursor: pointer; line-height: 1; padding: 0 2px; flex-shrink: 0; }
+.hike-item { display: flex; align-items: flex-start; gap: 10px; padding: 11px 14px; background: var(--green-bg); border-radius: 10px; border: 1px solid #9fd4b2; margin-bottom: 8px; }
+.hike-text { flex: 1; font-size: 13px; color: var(--green); line-height: 1.5; }
+.link-item { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: var(--card); border-radius: 10px; border: 1px solid var(--border); margin-bottom: 8px; }
+.link-item a { flex: 1; font-size: 13px; color: var(--north); text-decoration: none; word-break: break-all; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.stat-card { padding: 12px 14px; background: var(--card); border-radius: 10px; border: 1px solid var(--border); }
+.stat-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.stat-val { font-size: 22px; font-weight: 700; }
+.empty { text-align: center; padding: 28px 0; font-size: 13px; color: var(--muted); }
+.tip-box { padding: 10px 14px; background: #fffbea; border: 1px solid #f0d060; border-radius: 10px; font-size: 12px; color: #6b4c00; margin-top: 10px; line-height: 1.5; }
+.sec-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin: 14px 0 8px; }
+.input-row { display: flex; gap: 8px; margin-top: 12px; }
+.input-col { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+input[type=text], input[type=url], textarea { flex: 1; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); font-size: 14px; color: var(--text); background: var(--card); outline: none; font-family: inherit; -webkit-appearance: none; width: 100%; }
+textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+.add-btn { padding: 10px 18px; border-radius: 10px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.btn-dark { background: #1A1A1A; color: white; }
+.btn-green { background: var(--green); color: white; }
+.btn-blue { background: var(--north); color: white; }
+.mobile-bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 10px 20px calc(10px + var(--safe-bottom)); z-index: 200; }
+.nav-btn { padding: 9px 18px; border-radius: 10px; border: 1px solid var(--border); background: white; font-size: 13px; cursor: pointer; font-weight: 500; }
+.nav-btn:disabled { opacity: 0.3; }
+.nav-ctr { font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR (desktop only) -->
+<div id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-eyebrow">Van trip · Sep 16–30</div>
+    <div class="sidebar-title">Norway 🇳🇴</div>
+    <div class="sidebar-sub">Tromsø loop with Allie</div>
+  </div>
+  <div class="sidebar-stops" id="sidebarStops"></div>
+  <div class="sidebar-nav">
+    <button class="sidebar-nav-btn" id="deskPrev" onclick="navigate(-1)">← Prev</button>
+    <button class="sidebar-nav-btn" id="deskNext" onclick="navigate(1)">Next →</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+  <!-- HOME VIEW (mobile only) -->
+  <div id="homeView" class="view active">
+    <div class="home-header">
+      <div class="home-eyebrow">Van trip planner</div>
+      <div class="home-title">Norway 🇳🇴</div>
+      <div class="home-sub">Sep 16–30 · Tromsø loop with Allie</div>
+    </div>
+    <div class="home-map-wrap">
+      <iframe class="gmap-frame" height="260"
+        src="https://www.google.com/maps/embed?pb=!1m70!1m12!1m3!1d3455960.277650541!2d11.380003273782417!3d68.84362824239629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m55!3e6!4m5!1s0x4671bb64b0080dbd%3A0xcba58563edc4e847!2sTroms%C3%B8%20Municipality%2C%20Norway!3m2!1d69.6497717!2d18.9841221!4m5!1s0x45c50487447399bf%3A0x73e2c21634a7c74a!2sNordlenangen%2C%209068%2C%20Norway!3m2!1d69.92210519999999!2d20.1900531!4m5!1s0x45db591ae8a5bf15%3A0xa0e572d1f453bd02!2sSenja%2C%20Norway!3m2!1d69.29647709999999!2d17.6458971!4m5!1s0x45dcc21e09ec829b%3A0x7b6be647f8a53da9!2sAndenes%2C%208480%2C%20Norway!3m2!1d69.31607989999999!2d16.1202285!4m5!1s0x45de8022176f4351%3A0x8c20de9667b60f33!2sSvolv%C3%A6r%2C%208300%2C%20Norway!3m2!1d68.2343088!2d14.568223699999999!4m5!1s0x45de7b093095bc5b%3A0xe0558a27f13f9017!2sHenningsv%C3%A6r%2C%208312%2C%20Norway!3m2!1d68.1541872!2d14.2072536!4m5!1s0x45de3cbf60603ce7%3A0x82f2b236d153558f!2sReine%2C%208390%2C%20Norway!3m2!1d67.9323866!2d13.0887329!4m5!1s0x45de142d40745e41%3A0xf5ee8a913d97c8d4!2sNusfjord%2C%208380%2C%20Norway!3m2!1d68.0353165!2d13.3478452!4m5!1s0x4671bb64b0080dbd%3A0xcba58563edc4e847!2sTroms%C3%B8%20Municipality%2C%20Norway!3m2!1d69.6497717!2d18.9841221!5e1!3m2!1sen!2sus!4v1782610904698!5m2!1sen!2sus"
+        allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+      </iframe>
+    </div>
+    <div class="trip-summary">
+      <div class="summary-title">All stops — tap to plan</div>
+      <div class="stop-cards" id="homeStopCards"></div>
+    </div>
+  </div>
+
+  <!-- STOP VIEW -->
+  <div id="stopView" class="view">
+
+    <!-- Mobile header -->
+    <div class="mobile-header mobile-only">
+      <button class="mobile-back" onclick="showHome()">← All stops</button>
+      <div class="mobile-stop-title" id="mobileStopTitle"></div>
+    </div>
+
+    <!-- Desktop header -->
+    <div class="desktop-stop-header" id="desktopStopHeader"></div>
+
+    <!-- Map -->
+    <div class="map-section" id="stopMapSection"></div>
+
+    <!-- Tabs -->
+    <div class="tabs" id="stopTabs"></div>
+
+    <!-- Content -->
+    <div class="tab-content" id="stopTabContent"></div>
+
+    <!-- Mobile bottom nav -->
+    <div class="mobile-bottom-nav mobile-only">
+      <button class="nav-btn" id="mobPrev" onclick="navigate(-1)">← Prev</button>
+      <div class="nav-ctr" id="mobCtr"></div>
+      <button class="nav-btn" id="mobNext" onclick="navigate(1)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STOPS = [
+  { id:"tromso-start", name:"Tromsø", emoji:"🏔️", dates:"Sep 16–18", section:"base",
+    mapQ:"Tromsø,+Norway", mapZoom:12,
+    notes:"Arrive, pick up van Sep 18. Arctic Cathedral, cable car up Storsteinen. Get groceries and gear sorted.",
+    todos:["Pick up van Sep 18","Stock up groceries & supplies","Arctic Cathedral","Cable car to Storsteinen","Download offline maps for Norway","Northern lights app: Space Weather Live"],
+    hikes:[], stays:"", links:[] },
+  { id:"lyngen", name:"Lyngen Alps", emoji:"⛰️", dates:"Sep 18", section:"north",
+    mapQ:"Lyngen+Alps,+Nord-Lenangen,+Norway", mapZoom:11,
+    notes:"Day trip detour en route to Senja. Glaciers meeting the fjord — a drive-through wow moment.",
+    todos:["Stop at glacier viewpoint","Photo stop at fjord overlook","Continue to Senja same day"],
+    hikes:["Short walk to glacier viewpoint (~1 hr, easy)"], stays:"", links:[] },
+  { id:"senja", name:"Senja Island", emoji:"🌊", dates:"Sep 18–20", section:"north",
+    mapQ:"Senja,+Norway", mapZoom:11,
+    notes:"Norway in miniature. Mountains plunging into the sea. Fewer tourists than Lofoten.",
+    todos:["Hike Segla","Visit Husøy fishing village","Tungeneset viewpoint at golden hour","Find campsite near Skaland"],
+    hikes:["Segla (3–4 hrs, moderate-hard — pyramid peak)","Tungeneset viewpoint walk (easy, 30 min)"], stays:"", links:[] },
+  { id:"andoya", name:"Andøya", emoji:"🐋", dates:"Sep 21–22", section:"north",
+    mapQ:"Andenes,+8480,+Norway", mapZoom:11,
+    notes:"Quieter and wilder than Lofoten. Bleik beach with massive sea stacks. Whale watching from Andenes.",
+    todos:["Bleik beach & sea stacks","Decide on whale watching tour","Check Andenes–Fiskebøl ferry times","Drive south toward Svolvær"],
+    hikes:["Coastal walk at Bleik (easy, 1 hr)"], stays:"", links:[] },
+  { id:"svolvaer", name:"Svolvær", emoji:"🎣", dates:"Sep 22–24", section:"lofoten",
+    mapQ:"Svolvær,+8300,+Norway", mapZoom:12,
+    notes:"Lofoten entry point. Dramatic bridge approach. Good base for the north of the islands.",
+    todos:["Arrive and settle in","Explore Svolvær harbour","Day trip to Henningsvær for sunset","Stock up on food"],
+    hikes:["Festvågtind (3 hrs, panoramic views)","Svolværgeita — advanced only"], stays:"", links:[] },
+  { id:"henningsvær", name:"Henningsvær", emoji:"🏘️", dates:"Sep 24–25", section:"lofoten",
+    mapQ:"Henningsvær,+8312,+Norway", mapZoom:13,
+    notes:"Most photogenic fishing village in Lofoten. Built on tiny islands. Don't miss the football pitch on the rocks.",
+    todos:["Walk the whole island","Find the famous football pitch","Sunset over the harbour","Coffee at Kræmmervika"],
+    hikes:["Walk around the island (easy, 1–2 hrs)"], stays:"", links:[] },
+  { id:"reine", name:"Reine", emoji:"⛰️", dates:"Sep 26–28", section:"lofoten",
+    mapQ:"Reine,+8390,+Norway", mapZoom:13,
+    notes:"Most beautiful village in Norway. 2 nights minimum. Jill's birthday Sep 29 — celebrate here or in Tromsø!",
+    todos:["Hike Reinebringen for sunrise","Day trip to Å (westernmost tip)","Fish soup at Sakrisøy","Kayak if weather allows","Book rorbu in advance!"],
+    hikes:["Reinebringen (2–3 hrs, steep but iconic panorama)","Walk to Å village (easy, flat)","Utakleiv beach sunset walk"], stays:"", links:[] },
+  { id:"nusfjord", name:"Nusfjord", emoji:"🐟", dates:"Sep 28–29", section:"lofoten",
+    mapQ:"Nusfjord,+8380,+Norway", mapZoom:13,
+    notes:"Tiny preserved historic fishing village. Quick detour off E10. One of the oldest fishing villages in Norway.",
+    todos:["Walk the village","Visit the old fish factory","Photo stop at the harbour"],
+    hikes:[], stays:"", links:[] },
+  { id:"tromso-end", name:"Back to Tromsø", emoji:"🎂", dates:"Sep 29–30", section:"base",
+    mapQ:"Tromsø,+Norway", mapZoom:12,
+    notes:"Drop van. Celebrate Jill's birthday! Northern lights if conditions are right. Jill flies Sep 30, then Oslo.",
+    todos:["Drop off van","Dinner at Emmas Under (book ahead)","Northern lights tour?","🎂 Celebrate Jill's birthday!","Jill flies Sep 30 morning","Fly to Oslo"],
+    hikes:[], stays:"", links:[] }
+];
+
+const SEC = {
+  north:   { color:"var(--north)",   bg:"var(--north-bg)",   border:"var(--north-border)",   label:"Northern route" },
+  lofoten: { color:"var(--lofoten)", bg:"var(--lofoten-bg)", border:"var(--lofoten-border)", label:"Lofoten" },
+  base:    { color:"var(--base)",    bg:"var(--base-bg)",    border:"var(--base-border)",     label:"Base" }
+};
+
+let data = {};
+let currentIdx = 0;
+let currentTab = "overview";
+const isMobile = () => window.innerWidth < 768;
+
+function loadData() { try { return JSON.parse(localStorage.getItem("nt5")||"{}"); } catch(e) { return {}; } }
+function saveData() { try { localStorage.setItem("nt5", JSON.stringify(data)); } catch(e) {} }
+
+const saved = loadData();
+STOPS.forEach(s => {
+  const d = saved[s.id] || {};
+  data[s.id] = {
+    todos:   d.todos   !== undefined ? d.todos   : s.todos.slice(),
+    hikes:   d.hikes   !== undefined ? d.hikes   : s.hikes.slice(),
+    stays:   d.stays   !== undefined ? d.stays   : s.stays,
+    links:   d.links   !== undefined ? d.links   : s.links.slice(),
+    notes:   d.notes   !== undefined ? d.notes   : s.notes,
+    checked: d.checked !== undefined ? d.checked : {}
+  };
+});
+saveData();
+
+function stopEmbedUrl(s) {
+  return `https://maps.google.com/maps?q=${s.mapQ}&z=${s.mapZoom}&output=embed&t=k`;
+}
+
+function buildHome() {
+  document.getElementById("homeStopCards").innerHTML = STOPS.map((s, i) => {
+    const sec = SEC[s.section];
+    return `<div class="stop-card" onclick="openStop(${i})">
+      <div class="stop-num-card" style="background:${sec.bg};color:${sec.color};border:1px solid ${sec.border}">${i===0||i===8?s.emoji:i}</div>
+      <div style="flex:1">
+        <div class="stop-card-name">${s.name}</div>
+        <div class="stop-card-dates">${s.dates}</div>
+      </div>
+      <div class="stop-card-arrow">›</div>
+    </div>`;
+  }).join("");
+}
+
+function buildSidebar() {
+  document.getElementById("sidebarStops").innerHTML = STOPS.map((s, i) => {
+    const sec = SEC[s.section];
+    return `<div class="sidebar-stop ${i===currentIdx?"active":""}" onclick="openStop(${i})">
+      <div class="snum" style="background:${sec.bg};color:${sec.color};border:1px solid ${sec.border}">${i===0||i===8?s.emoji:i}</div>
+      <div>
+        <div class="sidebar-stop-name">${s.name}</div>
+        <div class="sidebar-stop-dates">${s.dates}</div>
+      </div>
+    </div>`;
+  }).join("");
+  document.getElementById("deskPrev").disabled = currentIdx === 0;
+  document.getElementById("deskNext").disabled = currentIdx === STOPS.length-1;
+}
+
+function showHome() {
+  document.getElementById("homeView").classList.add("active");
+  document.getElementById("stopView").classList.remove("active");
+  window.scrollTo({top:0});
+}
+
+function openStop(idx) {
+  currentIdx = idx; currentTab = "overview";
+  if (isMobile()) {
+    document.getElementById("homeView").classList.remove("active");
+    document.getElementById("stopView").classList.add("active");
+  }
+  renderStop();
+  window.scrollTo({top:0});
+}
+
+function navigate(dir) {
+  const n = currentIdx + dir;
+  if (n >= 0 && n < STOPS.length) { currentIdx = n; currentTab = "overview"; renderStop(); window.scrollTo({top:0}); }
+}
+
+function setTab(t) { currentTab = t; renderTabContent(); }
+
+function renderStop() {
+  const s = STOPS[currentIdx];
+  const sec = SEC[s.section];
+  buildSidebar();
+
+  // Mobile header
+  document.getElementById("mobileStopTitle").innerHTML =
+    `<div>
+      <div class="mobile-stop-name">${s.emoji} ${s.name}</div>
+      <div class="mobile-stop-dates">${s.dates}</div>
+    </div>
+    <div class="stop-badge" style="background:${sec.bg};color:${sec.color};border:1px solid ${sec.border}">${sec.label}</div>`;
+
+  // Desktop header
+  document.getElementById("desktopStopHeader").innerHTML =
+    `<div style="padding-bottom:16px">
+      <div class="dsk-stop-name">${s.emoji} ${s.name}</div>
+      <div class="dsk-stop-dates">${s.dates}</div>
+    </div>
+    <div class="stop-badge" style="background:${sec.bg};color:${sec.color};border:1px solid ${sec.border}">${sec.label}</div>`;
+
+  // Per-stop map embed
+  const mapH = isMobile() ? 200 : 260;
+  document.getElementById("stopMapSection").innerHTML =
+    `<div class="map-label">Location</div>
+     <div class="map-frame-wrap">
+       <iframe src="${stopEmbedUrl(s)}" width="100%" height="${mapH}" style="border:none;display:block" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+     </div>`;
+
+  // Tabs
+  const tabs = ["overview","todos","hikes","stays","links"];
+  document.getElementById("stopTabs").innerHTML = tabs.map(t =>
+    `<button class="tab-btn ${currentTab===t?"active":""}" onclick="setTab('${t}')">${t[0].toUpperCase()+t.slice(1)}</button>`
+  ).join("");
+
+  document.getElementById("mobCtr").textContent = `${currentIdx+1} / ${STOPS.length}`;
+  document.getElementById("mobPrev").disabled = currentIdx === 0;
+  document.getElementById("mobNext").disabled = currentIdx === STOPS.length-1;
+
+  renderTabContent();
+}
+
+function renderTabContent() {
+  const s = STOPS[currentIdx];
+  const sd = data[s.id];
+  const sec = SEC[s.section];
+
+  document.querySelectorAll(".tab-btn").forEach(b => {
+    b.classList.toggle("active", b.textContent.toLowerCase() === currentTab);
+  });
+
+  let html = "";
+  if (currentTab === "overview") {
+    html = `<div class="note-box" style="background:${sec.bg};border-left-color:${sec.border};color:#2d3748">${esc(sd.notes)}</div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-label">Things to do</div><div class="stat-val">${sd.todos.length}</div></div>
+      <div class="stat-card"><div class="stat-label">Hikes planned</div><div class="stat-val">${sd.hikes.length}</div></div>
+    </div>
+    <div class="sec-label">Edit notes</div>
+    <textarea oninput="updateField('notes',this.value)" placeholder="Add notes about this stop...">${esc(sd.notes)}</textarea>`;
+
+  } else if (currentTab === "todos") {
+    const items = sd.todos.map((t,i) => {
+      const done = sd.checked["t"+i]||false;
+      return `<div class="todo-item">
+        <div class="checkbox ${done?"checked":""}" onclick="toggleTodo(${i})"></div>
+        <div class="todo-text ${done?"done":""}">${esc(t)}</div>
+        <button class="del-btn" onclick="delTodo(${i})">×</button>
+      </div>`;
+    }).join("");
+    html = `<div class="card">${items||'<div class="empty">No tasks yet</div>'}</div>
+    <div class="input-row">
+      <input type="text" id="newTodo" placeholder="Add a task..." onkeydown="if(event.key==='Enter')addTodo()">
+      <button class="add-btn btn-dark" onclick="addTodo()">Add</button>
+    </div>`;
+
+  } else if (currentTab === "hikes") {
+    const items = sd.hikes.map((h,i) => `
+      <div class="hike-item">
+        <span>🥾</span>
+        <div class="hike-text">${esc(h)}</div>
+        <button class="del-btn" onclick="delHike(${i})" style="color:#9fd4b2">×</button>
+      </div>`).join("");
+    html = `${items||'<div class="empty">No hikes added yet</div>'}
+    <div class="input-row">
+      <input type="text" id="newHike" placeholder="Add a hike or walk..." onkeydown="if(event.key==='Enter')addHike()">
+      <button class="add-btn btn-green" onclick="addHike()">Add</button>
+    </div>`;
+
+  } else if (currentTab === "stays") {
+    html = `<div style="font-size:13px;color:var(--muted);margin-bottom:10px">Where are you sleeping? Campsite, rorbu, hostel...</div>
+    <textarea oninput="updateField('stays',this.value)" placeholder="e.g. Eliassen Rorbuer, Hamnøy. Check-in 3pm.">${esc(sd.stays)}</textarea>
+    <div class="tip-box">💡 Reine rorbuer book up fast — search "rorbu Lofoten" on Airbnb or Booking.com early.</div>`;
+
+  } else if (currentTab === "links") {
+    const items = sd.links.map((l,i) => `
+      <div class="link-item">
+        <span>🔗</span>
+        <a href="${esc(l.url)}" target="_blank">${esc(l.label)}</a>
+        <button class="del-btn" onclick="delLink(${i})">×</button>
+      </div>`).join("");
+    html = `${items||'<div class="empty">No links saved yet</div>'}
+    <div class="input-col">
+      <input type="text" id="newLinkLabel" placeholder="Label (e.g. Reinebringen trail info)">
+      <div class="input-row">
+        <input type="url" id="newLinkUrl" placeholder="https://..." onkeydown="if(event.key==='Enter')addLink()">
+        <button class="add-btn btn-blue" onclick="addLink()">Save</button>
+      </div>
+    </div>`;
+  }
+
+  document.getElementById("stopTabContent").innerHTML = html;
+}
+
+function esc(s) { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function sid() { return STOPS[currentIdx].id; }
+function updateField(f,v) { data[sid()][f]=v; saveData(); }
+function toggleTodo(i) { const c=data[sid()].checked; c["t"+i]=!c["t"+i]; saveData(); renderTabContent(); }
+function delTodo(i) { data[sid()].todos.splice(i,1); delete data[sid()].checked["t"+i]; saveData(); renderTabContent(); }
+function addTodo() {
+  const el=document.getElementById("newTodo"); const v=el.value.trim();
+  if(!v) return; data[sid()].todos.push(v); saveData(); el.value=""; renderTabContent();
+  document.getElementById("newTodo")?.focus();
+}
+function delHike(i) { data[sid()].hikes.splice(i,1); saveData(); renderTabContent(); }
+function addHike() {
+  const el=document.getElementById("newHike"); const v=el.value.trim();
+  if(!v) return; data[sid()].hikes.push(v); saveData(); el.value=""; renderTabContent();
+  document.getElementById("newHike")?.focus();
+}
+function addLink() {
+  const label=document.getElementById("newLinkLabel")?.value.trim();
+  const url=document.getElementById("newLinkUrl")?.value.trim();
+  if(!label||!url) return; data[sid()].links.push({label,url}); saveData(); renderTabContent();
+}
+function delLink(i) { data[sid()].links.splice(i,1); saveData(); renderTabContent(); }
+
+function init() {
+  buildHome();
+  buildSidebar();
+  if (!isMobile()) {
+    document.getElementById("homeView").classList.remove("active");
+    document.getElementById("stopView").classList.add("active");
+    openStop(0);
+  }
+}
+
+window.addEventListener("resize", () => {
+  if (!isMobile()) {
+    document.getElementById("homeView").classList.remove("active");
+    document.getElementById("stopView").classList.add("active");
+    if (!document.getElementById("stopTabContent").innerHTML) renderStop();
+  }
+});
+
+init();
+</script>
+</body>
+</html>
