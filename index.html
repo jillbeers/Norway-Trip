@@ -261,18 +261,6 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
 .stay-card-status { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; }
 .stay-card-notes { font-size: 13px; color: var(--muted); line-height: 1.5; border-top: 1px solid var(--border); padding-top: 8px; margin-top: 2px; }
 .notes-card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
-.budget-body { padding: 20px; }
-.budget-total { background: var(--navy); color: white; border-radius: 14px; padding: 20px; margin-bottom: 20px; }
-.budget-total-label { font-size: 11px; color: #7ab3cf; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
-.budget-total-val { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
-.budget-total-sub { font-size: 12px; color: #7ab3cf; margin-top: 4px; }
-.budget-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
-.budget-row:last-child { border-bottom: none; }
-.budget-cat { flex: 1; }
-.budget-cat-name { font-size: 14px; font-weight: 600; }
-.budget-cat-sub { font-size: 12px; color: var(--muted); }
-.budget-amount { font-size: 15px; font-weight: 700; min-width: 60px; text-align: right; }
-.budget-input { width: 90px !important; text-align: right; font-weight: 600; padding: 6px 10px !important; min-width: unset; flex: unset; }
 </style>
 </head>
 <body>
@@ -280,7 +268,7 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
 <!-- ══ SIDEBAR ══ -->
 <div id="sidebar">
   <div class="sidebar-header">
-    <div class="sidebar-eyebrow">Van trip · Sep 16–30</div>
+    <div class="sidebar-eyebrow">Van trip · Sep 17–30</div>
     <div class="sidebar-title">Norway 🇳🇴</div>
     <div class="sidebar-sub">Tromsø loop with Allie</div>
   </div>
@@ -297,10 +285,6 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     <button class="sidebar-nav-item" id="snav-pack" onclick="showPage('pack')">
       <div class="sidebar-nav-icon" style="background:var(--green-bg)">🎒</div>
       <div><div class="sidebar-nav-label">Packing list</div></div>
-    </button>
-    <button class="sidebar-nav-item" id="snav-budget" onclick="showPage('budget')">
-      <div class="sidebar-nav-icon" style="background:var(--purple-bg)">💰</div>
-      <div><div class="sidebar-nav-label">Budget</div></div>
     </button>
     <button class="sidebar-nav-item" id="snav-plan" onclick="showPage('plan')">
       <div class="sidebar-nav-icon" style="background:#fff0e6">📋</div>
@@ -330,12 +314,12 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     <div class="page-header mobile-only">
       <div class="pg-eyebrow">Van trip planner</div>
       <div class="pg-title">Norway 🇳🇴</div>
-      <div class="pg-sub">Sep 16–30 · Tromsø loop with Allie</div>
+      <div class="pg-sub">Sep 17–30 · Tromsø loop with Allie</div>
     </div>
     <div class="page-header-desk desktop-only">
       <div class="pg-eyebrow">Van trip planner</div>
       <div class="pg-title">Norway 🇳🇴</div>
-      <div class="pg-sub">Sep 16–30 · Tromsø loop with Allie</div>
+      <div class="pg-sub">Sep 17–30 · Tromsø loop with Allie</div>
     </div>
     <div class="home-map-wrap">
       <iframe class="gmap-frame" id="homeMapFrame"
@@ -346,7 +330,7 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     <div class="home-body">
       <div class="section-title">Trip at a glance</div>
       <div class="trip-stats">
-        <div class="trip-stat"><div class="trip-stat-val">14</div><div class="trip-stat-label">Days</div></div>
+        <div class="trip-stat"><div class="trip-stat-val">13</div><div class="trip-stat-label">Days</div></div>
         <div class="trip-stat"><div class="trip-stat-val">9</div><div class="trip-stat-label">Stops</div></div>
         <div class="trip-stat"><div class="trip-stat-val">~560 mi</div><div class="trip-stat-label">Total drive</div></div>
       </div>
@@ -578,18 +562,6 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     <div class="pack-body" id="packBody"></div>
   </div>
 
-  <!-- BUDGET -->
-  <div id="budgetView" class="view">
-    <div class="page-header mobile-only">
-      <div class="pg-eyebrow">Trip finances</div>
-      <div class="pg-title">Budget 💰</div>
-    </div>
-    <div class="page-header-desk desktop-only">
-      <div class="pg-eyebrow">Trip finances</div>
-      <div class="pg-title">Budget 💰</div>
-    </div>
-    <div class="budget-body" id="budgetBody"></div>
-  </div>
 
   <!-- PLANNING -->
   <div id="planView" class="view">
@@ -649,10 +621,6 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     <span class="mobile-tab-icon">🎒</span>
     <span class="mobile-tab-label">Packing</span>
   </button>
-  <button class="mobile-tab-btn" id="mtab-budget" onclick="showPage('budget')">
-    <span class="mobile-tab-icon">💰</span>
-    <span class="mobile-tab-label">Budget</span>
-  </button>
   <button class="mobile-tab-btn" id="mtab-plan" onclick="showPage('plan')">
     <span class="mobile-tab-icon">📋</span>
     <span class="mobile-tab-label">Planning</span>
@@ -674,10 +642,10 @@ const STOPS = [
   { id:"lyngen", name:"Lyngen Alps", emoji:"⛰️", dates:"Sep 18", section:"north", mapQ:"Lyngen+Alps,+Nord-Lenangen,+Norway", mapZoom:11, notes:"Day trip detour en route to Senja. Glaciers meeting the fjord — a drive-through wow moment.", todos:["Stop at glacier viewpoint","Photo stop at fjord overlook","Continue to Senja same day"], hikes:["Short walk to glacier viewpoint (~1 hr, easy)"], stays:"", links:[] },
   { id:"senja", name:"Senja Island", emoji:"🌊", dates:"Sep 18–20", section:"north", mapQ:"Senja,+Norway", mapZoom:11, notes:"Norway in miniature. Mountains plunging into the sea. Fewer tourists than Lofoten.", todos:["Hike Segla","Visit Husøy fishing village","Tungeneset viewpoint at golden hour","Find campsite near Skaland"], hikes:["Segla (3–4 hrs, moderate-hard — pyramid peak)","Tungeneset viewpoint walk (easy, 30 min)"], stays:"", links:[] },
   { id:"andoya", name:"Andøya", emoji:"🐋", dates:"Sep 21–22", section:"north", mapQ:"Andenes,+8480,+Norway", mapZoom:11, notes:"Quieter and wilder than Lofoten. Bleik beach with massive sea stacks. Whale watching from Andenes.", todos:["Bleik beach & sea stacks","Decide on whale watching tour","Check Andenes–Fiskebøl ferry times","Drive south toward Svolvær"], hikes:["Coastal walk at Bleik (easy, 1 hr)"], stays:"", links:[] },
-  { id:"svolvaer", name:"Svolvær", emoji:"🎣", dates:"Sep 22–24", section:"lofoten", mapQ:"Svolvær,+8300,+Norway", mapZoom:12, notes:"Lofoten entry point. Dramatic bridge approach. Good base for the north of the islands.", todos:["Arrive and settle in","Explore Svolvær harbour","Day trip to Henningsvær for sunset","Stock up on food"], hikes:["Festvågtind (3 hrs, panoramic views)","Svolværgeita — advanced only"], stays:"", links:[] },
-  { id:"henningsvær", name:"Henningsvær", emoji:"🏘️", dates:"Sep 24–25", section:"lofoten", mapQ:"Henningsvær,+8312,+Norway", mapZoom:13, notes:"Most photogenic fishing village in Lofoten. Built on tiny islands. Don't miss the football pitch on the rocks.", todos:["Walk the whole island","Find the famous football pitch","Sunset over the harbour","Coffee at Kræmmervika"], hikes:["Walk around the island (easy, 1–2 hrs)"], stays:"", links:[] },
-  { id:"reine", name:"Reine", emoji:"⛰️", dates:"Sep 26–28", section:"lofoten", mapQ:"Reine,+8390,+Norway", mapZoom:13, notes:"Most beautiful village in Norway. 2 nights minimum. Jill's birthday Sep 29 — celebrate here or in Tromsø!", todos:["Hike Reinebringen for sunrise","Day trip to Å (westernmost tip)","Fish soup at Sakrisøy","Kayak if weather allows","Book rorbu in advance!"], hikes:["Reinebringen (2–3 hrs, steep but iconic panorama)","Walk to Å village (easy, flat)","Utakleiv beach sunset walk"], stays:"", links:[] },
-  { id:"nusfjord", name:"Nusfjord", emoji:"🐟", dates:"Sep 28–29", section:"lofoten", mapQ:"Nusfjord,+8380,+Norway", mapZoom:13, notes:"Tiny preserved historic fishing village. Quick detour off E10. One of the oldest fishing villages in Norway.", todos:["Walk the village","Visit the old fish factory","Photo stop at the harbour"], hikes:[], stays:"", links:[] },
+  { id:"svolvaer", name:"Svolvær", emoji:"🎣", dates:"Sep 22–23", section:"lofoten", mapQ:"Svolvær,+8300,+Norway", mapZoom:12, notes:"Lofoten entry point. Dramatic bridge approach. Good base for the north of the islands.", todos:["Arrive and settle in","Explore Svolvær harbour","Evening drive to Henningsvær for sunset","Stock up on food"], hikes:["Festvågtind (3 hrs, panoramic views)","Svolværgeita — advanced only"], stays:"", links:[] },
+  { id:"henningsvær", name:"Henningsvær", emoji:"🏘️", dates:"Sep 24", section:"lofoten", mapQ:"Henningsvær,+8312,+Norway", mapZoom:13, notes:"Most photogenic fishing village in Lofoten. Built on tiny islands. Only 30 min from Svolvær — easy morning drive. Don't miss the football pitch on the rocks.", todos:["Walk the whole island","Find the famous football pitch","Sunset over the harbour","Coffee at Kræmmervika","Van camp nearby overnight"], hikes:["Walk around the island (easy, 1–2 hrs)"], stays:"", links:[] },
+  { id:"reine", name:"Reine / Å area", emoji:"⛰️", dates:"Sep 26–27 (day trips)", section:"lofoten", mapQ:"Reine,+8390,+Norway", mapZoom:13, notes:"Day trip from Hattvika Lodge (~45 min drive). Most dramatic scenery in Lofoten. Reinebringen hike, Sakrisøy fish soup, Å village at the end of the road.", todos:["Hike Reinebringen (early morning from Hattvika)","Drive to Å — end of the road","Fish soup at Sakrisøy restaurant","Hamnøy bridge photo stop","Explore Reine village"], hikes:["Reinebringen (2–3 hrs, steep but iconic — Sherpa steps, 1715 ft gain, 4.8★)","Walk to Å village (easy, flat)","Utakleiv beach sunset walk"], stays:"", links:[{label:"Reinebringen on AllTrails",url:"https://www.alltrails.com/trail/norway/nordland/reinebringen"},{label:"Hattvika Lodge (base — Ballstad)",url:"https://book.hattvikalodge.no/accommodation/room-group-info?langid=2&roomtypegroupid=0dd0fcd4-db5c-4dc2-a909-1979b51aa1df"},{label:"Sakrisøy Rorbuer",url:"https://www.sakrisoy-rorbuer.no"}] },
+  { id:"nusfjord", name:"Nusfjord", emoji:"🐟", dates:"Sep 25 (en route)", section:"lofoten", mapQ:"Nusfjord,+8380,+Norway", mapZoom:13, notes:"Tiny preserved historic fishing village, detour off E10 on the drive from Henningsvær to Hattvika. One of the oldest fishing villages in Norway — worth an hour or two.", todos:["Walk the village","Visit the old fish factory","Photo stop at the harbour","Continue to Hattvika after"], hikes:[], stays:"", links:[] },
   { id:"tromso-end", name:"Back to Tromsø", emoji:"🎂", dates:"Sep 29–30", section:"base", mapQ:"Tromsø,+Norway", mapZoom:12, notes:"Drop van. Celebrate Jill's birthday! Northern lights if conditions are right. Jill flies Sep 30, then Oslo.", todos:["Drop off van","Dinner at Emmas Under (book ahead)","Northern lights tour?","🎂 Celebrate Jill's birthday!","Jill flies Sep 30 morning","Fly to Oslo"], hikes:[], stays:"", links:[] }
 ];
 
@@ -692,14 +660,11 @@ const PACK_GROUPS = [
   { id:"van", label:"🚐 Indie Campers poptop — extras to bring", items:[
     {t:"Sleeping bag (rated to 20°F / -6°C) — van has bedding but backup is smart",tag:"essential"},
     {t:"Extra pillow"},
-    {t:"Camp chairs — van won't have these",tag:"essential"},
-    {t:"Small folding table for outdoor cooking"},
     {t:"Headlamps + spare batteries",tag:"essential"},
     {t:"Power bank (large — 20,000mAh+)",tag:"essential"},
     {t:"Car phone mount"},
     {t:"Reusable water bottles — 1L each minimum"},
     {t:"Extra food storage containers / zip bags"},
-    {t:"Dish soap + sponge (van kit may be minimal)"},
     {t:"Trash bags"},
     {t:"Toilet paper backup"},
     {t:"Leveling wedges for uneven parking spots"},
@@ -753,19 +718,6 @@ const PACK_GROUPS = [
   ]}
 ];
 
-// ══ BUDGET DATA ══
-const BUDGET_CATS = [
-  { id:"van", icon:"🚐", name:"Indie Campers van rental", sub:"11 days — confirm total on booking" },
-  { id:"fuel", icon:"⛽", name:"Fuel", sub:"~560 mi, Norway diesel ~$2.50/L (~$200–250 est.)" },
-  { id:"food", icon:"🍜", name:"Food & groceries", sub:"Mix of van cooking + eating out (~$60–80/day for 2)" },
-  { id:"tromso-hotel", icon:"🏨", name:"Tromsø hotel (2 nights)", sub:"Malangen or Sommarøy — ~$200–350/night" },
-  { id:"rorbu", icon:"🛖", name:"Rorbu in Reine (2–3 nights)", sub:"Eliassen or Sakrisøy — ~$200–300/night" },
-  { id:"svolvaer-stay", icon:"🛏️", name:"Svolvær stay (2 nights)", sub:"Svinøya Rorbuer or similar — ~$150–200/night" },
-  { id:"ferries", icon:"⛴️", name:"Ferries", sub:"Andenes–Fiskebøl + any others" },
-  { id:"activities", icon:"🥾", name:"Activities & experiences", sub:"Whale watching, kayak, northern lights tour" },
-  { id:"misc", icon:"🛍️", name:"Misc & souvenirs", sub:"Buffer — Norway will surprise you" },
-];
-
 // ══ STATE ══
 let data = {};
 let currentIdx = 0;
@@ -783,14 +735,12 @@ STOPS.forEach(s => {
 });
 if (!saved._pack) data._pack = {};
 else data._pack = saved._pack;
-if (!saved._budget) data._budget = {};
-else data._budget = saved._budget;
 if (!saved._plan) data._plan = {};
 else data._plan = saved._plan;
 saveData();
 
 // ══ PAGE ROUTING ══
-const PAGES = ["home","links","pack","budget","plan","cal","stop"];
+const PAGES = ["home","links","pack","plan","cal","stop"];
 function showPage(page, stopIdx) {
   currentPage = page;
   PAGES.forEach(p => {
@@ -799,13 +749,13 @@ function showPage(page, stopIdx) {
   });
 
   // Sync sidebar nav items (desktop)
-  ["home","links","pack","budget","plan","cal"].forEach(p => {
+  ["home","links","pack","plan","cal"].forEach(p => {
     const btn = document.getElementById("snav-"+p);
     if (btn) btn.classList.toggle("active", p === page);
   });
 
   // Sync mobile tab bar
-  ["home","links","pack","budget","plan","cal","stop"].forEach(p => {
+  ["home","links","pack","plan","cal","stop"].forEach(p => {
     const btn = document.getElementById("mtab-"+p);
     if (btn) btn.classList.toggle("active", p === page);
   });
@@ -820,7 +770,6 @@ function showPage(page, stopIdx) {
   document.getElementById("deskNext").disabled = page !== "stop" || currentIdx === STOPS.length-1;
 
   if (page === "pack") renderPacking();
-  if (page === "budget") renderBudget();
   if (page === "plan") renderPlan();
   if (page === "cal") renderCalendar();
   if (page === "stop") {
@@ -900,44 +849,6 @@ function togglePack(key) {
   saveData(); renderPacking();
 }
 
-// ══ BUDGET ══
-function renderBudget() {
-  let total = 0;
-  BUDGET_CATS.forEach(c => { total += parseFloat(data._budget[c.id] || 0); });
-
-  let html = `<div class="budget-total">
-    <div class="budget-total-label">Estimated total</div>
-    <div class="budget-total-val">$${total.toLocaleString('en-US', {minimumFractionDigits:0,maximumFractionDigits:0})}</div>
-    <div class="budget-total-sub">Norway is expensive — budget ~$120–150/day per person</div>
-  </div>
-  <div class="card">`;
-
-  BUDGET_CATS.forEach(c => {
-    const val = data._budget[c.id] || "";
-    html += `<div class="budget-row">
-      <div style="font-size:20px;width:32px;text-align:center;flex-shrink:0">${c.icon}</div>
-      <div class="budget-cat">
-        <div class="budget-cat-name">${c.name}</div>
-        <div class="budget-cat-sub">${c.sub}</div>
-      </div>
-      <input type="number" class="budget-input" value="${esc(String(val))}" placeholder="$0" oninput="updateBudget('${c.id}',this.value)">
-    </div>`;
-  });
-
-  html += `</div><div class="tip-box" style="margin-top:12px">💡 Norway tip: Supermarkets (Rema 1000, Kiwi, Coop) are your best friend. Eating out is ~$25–40/meal per person. Fill up on cheaper fuel in Sweden if crossing the border.</div>`;
-
-  document.getElementById("budgetBody").innerHTML = html;
-}
-
-function updateBudget(id, val) {
-  data._budget[id] = parseFloat(val) || 0;
-  saveData();
-  // Update total live
-  let total = 0;
-  BUDGET_CATS.forEach(c => { total += parseFloat(data._budget[c.id] || 0); });
-  const el = document.querySelector(".budget-total-val");
-  if (el) el.textContent = "$" + total.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
-}
 
 // ══ STOP VIEW ══
 function navigate(dir) {
@@ -1027,8 +938,9 @@ function delLink(i) { data[sid()].links.splice(i,1); saveData(); renderTabConten
 // ══ PLANNING DATA ══
 const PRE_TRIP_TODOS = [
   { t:"Book Andenes–Fiskebøl ferry", tag:"urgent", link:"https://www.torghatten-nord.no/en" },
-  { t:"Book Sakrisøy Rorbuer — 1 night Sep 27 (the ONE rorbu splurge)", tag:"urgent", link:"http://www.sakrisoy-rorbuer.no" },
-  { t:"Book hotel in Tromsø — Malangen Resort or Sommarøy Arctic Hotel (2 nights Sep 16–18)", tag:"urgent" },
+  { t:"Book Hattvika Lodge — 2 nights Sep 26–27 (lodge/rorbu stay in Ballstad)", tag:"urgent", link:"https://book.hattvikalodge.no/accommodation/room-group-info?langid=2&roomtypegroupid=0dd0fcd4-db5c-4dc2-a909-1979b51aa1df" },
+  { t:"Book hotel in Tromsø — 1 night Sep 17 (arrival night, both Jill + Allie). Options: Scandic Ishavshotel, Malangen, Sommarøy", tag:"urgent" },
+  { t:"✅ Jill's flights booked — KLM code Z8Z6RZ, SLC→TOS Sep 16 (4:35pm), returns Sep 30. $1,989.13 on Amex", tag:"urgent" },
   { t:"Book hotel in Tromsø for birthday night Sep 29 (1 night)", tag:"urgent" },
   { t:"✅ Indie Campers van booked — code XNGZE7, pickup Sep 18 Tromsø", tag:"urgent", link:"https://indiecampers.com/client/my-booking" },
   { t:"Upload ID/Passport + driver's license to Indie Campers client area (do this now!)", tag:"urgent", link:"https://indiecampers.com/client/my-booking" },
@@ -1044,14 +956,14 @@ const PRE_TRIP_TODOS = [
   { t:"Research whale watching in Andenes — book if interested", tag:"optional", link:"https://www.whalesafari.no" },
   { t:"Book dinner at Emmas Under, Tromsø for Jill's birthday (Sep 29)", tag:"soon", link:"https://www.emmasdrommekjokken.no" },
   { t:"Check Indie Campers app — learn van systems before pickup", tag:"soon" },
-  { t:"Pack camp chairs — van doesn't include them", tag:"soon" },
 ];
 
 const STAY_RECS = [
-  { name:"Malangen Resort", location:"Tromsø area — Sep 16–18", notes:"Luxury wilderness lodge on a fjord peninsula, ~45 min from Tromsø. Stunning northern lights spot. Worth it for the arrival nights when you're jetlagged and want a proper bed.", status:"considering", statusStyle:"background:var(--amber-bg);color:var(--amber)" },
-  { name:"Sommarøy Arctic Hotel", location:"Tromsø area — Sep 16–18", notes:"Island hotel connected by bridge near Tromsø, right on the water. More classic hotel feel, closer to city. Good alternative to Malangen.", status:"considering", statusStyle:"background:var(--amber-bg);color:var(--amber)" },
+  { name:"Scandic Ishavshotel", location:"Tromsø — Sep 17 (1 night)", notes:"Waterfront hotel right in central Tromsø. Great harbor views, walking distance to everything. Practical and solid for the arrival night. Also an option for Sep 29 birthday night.", status:"considering", statusStyle:"background:var(--amber-bg);color:var(--amber)" },
+  { name:"Malangen Resort", location:"Tromsø area — Sep 17 (1 night)", notes:"Luxury wilderness lodge on a fjord peninsula, ~45 min from Tromsø. Stunning northern lights spot. Worth it for the arrival night when you're jetlagged and want a proper bed.", status:"considering", statusStyle:"background:var(--amber-bg);color:var(--amber)" },
+  { name:"Sommarøy Arctic Hotel", location:"Tromsø area — Sep 17 (1 night)", notes:"Island hotel connected by bridge near Tromsø, right on the water. More classic hotel feel, closer to city. Good alternative to Malangen.", status:"considering", statusStyle:"background:var(--amber-bg);color:var(--amber)" },
   { name:"Indie Campers Poptop 4 🚐", location:"Everywhere else — Sep 18–27 & Sep 28", notes:"Van camp almost the whole trip! Allemannsretten (Norway's right to roam) means you can park almost anywhere in nature. Use Park4Night or Bobilguide to find the best spots. Wake up with fjord views every morning.", status:"van camping ✓", statusStyle:"background:var(--green-bg);color:var(--green)" },
-  { name:"Sakrisøy Rorbuer ⭐", location:"Sakrisøy / Reine — Sep 27 (1 night)", notes:"The ONE splurge night. Yellow rorbu cabins right on the water, the most photogenic in Lofoten. Best fish soup restaurant in Norway literally next door. Easier to book than Eliassen. Book at sakrisoy-rorbuer.no", status:"book now!", statusStyle:"background:var(--lofoten-bg);color:var(--lofoten)" },
+  { name:"Hattvika Lodge ⭐", location:"Ballstad — Sep 26–27 (2 nights)", notes:"Historic rorbu fishing village restored by local family. Onsite Fangst restaurant (sea-to-table, highly rated), sauna on the dock, kayaking. ~45 min from Reine so perfect base for day trips south. Book at hattvikalodge.no", status:"book now!", statusStyle:"background:var(--lofoten-bg);color:var(--lofoten)" },
   { name:"Tromsø hotel (birthday night)", location:"Tromsø — Sep 29", notes:"One night back in Tromsø for Jill's birthday — Emmas Under dinner, possible northern lights tour. Any central Tromsø hotel works, or book Malangen again if you loved it.", status:"book soon", statusStyle:"background:var(--north-bg);color:var(--north)" },
 ];
 
@@ -1135,21 +1047,21 @@ function updatePlanNotes(v) {
 
 // ══ CALENDAR ══
 const CAL_DAYS = [
-  { date:"2026-09-16", dow:"Wed", dom:"16", travel:"✈️ Fly to Tromsø", location:"Tromsø", detail:"Arrive, check in. Rest up — long travel day.", night:"hotel", nightLabel:"🏨 Hotel", section:"arrival" },
-  { date:"2026-09-17", dow:"Thu", dom:"17", location:"Tromsø", detail:"Explore city. Arctic Cathedral, cable car up Storsteinen, good dinner out.", night:"hotel", nightLabel:"🏨 Hotel" },
-  { date:"2026-09-18", dow:"Fri", dom:"18", travel:"🚐 Pick up van → Lyngen → Senja", location:"Senja Island", detail:"Pick up Indie Campers van. Drive through Lyngen Alps (photo stop). Arrive Senja, find a wild camp spot with a view.", night:"van", nightLabel:"🚐 Van camp", section:"north" },
+  { date:"2026-09-16", dow:"Wed", dom:"16", travel:"✈️ Fly to Tromsø", location:"In the air", detail:"✈️ Jill: DL56 SLC→AMS, KL1201→OSL, SK4424→TOS. KLM booking Z8Z6RZ. Departs 4:35pm SLC. Allie's flight TBD.", night:"travel", nightLabel:"✈️ In flight", section:"arrival" },
+  { date:"2026-09-17", dow:"Thu", dom:"17", travel:"🛬 Arrive Tromsø 6:40pm", location:"Tromsø", detail:"Jill lands 6:40pm (KLM Z8Z6RZ). Meet up with Allie! Check into hotel. Rest up — long travel day. Van pickup tomorrow.", night:"hotel", nightLabel:"🏨 Hotel" },
+  { date:"2026-09-18", dow:"Fri", dom:"18", travel:"🚐 Pick up van → Lyngen → Senja", location:"Senja Island", detail:"Check out of hotel, pick up Indie Campers van (code XNGZE7). Drive through Lyngen Alps (photo stop). Arrive Senja, find a wild camp spot with a view.", night:"van", nightLabel:"🚐 Van camp", section:"north" },
   { date:"2026-09-19", dow:"Sat", dom:"19", location:"Senja Island", detail:"Hike Segla (3–4 hrs). Afternoon in Husøy fishing village. Golden hour at Tungeneset viewpoint.", night:"van", nightLabel:"🚐 Van camp" },
   { date:"2026-09-20", dow:"Sun", dom:"20", travel:"🚐 Drive Senja → Andøya (~3 hrs)", location:"Andøya", detail:"Morning on Senja, drive north to Andøya. Bleik beach and sea stacks in the evening.", night:"van", nightLabel:"🚐 Van camp" },
   { date:"2026-09-21", dow:"Mon", dom:"21", location:"Andøya", detail:"Andenes whale watching or coastal walks. Check Fiskebøl ferry times for tomorrow.", night:"van", nightLabel:"🚐 Van camp" },
-  { date:"2026-09-22", dow:"Tue", dom:"22", travel:"⛴️ Ferry + drive to Svolvær (~4 hrs)", location:"Svolvær", detail:"Andenes–Fiskebøl ferry (book ahead!). Drive south to Svolvær. Find a van spot near the harbour.", night:"van", nightLabel:"🚐 Van camp", section:"lofoten" },
-  { date:"2026-09-23", dow:"Wed", dom:"23", location:"Svolvær area", detail:"Festvågtind hike. Explore Svolvær harbour. Drive to Henningsvær for sunset.", night:"van", nightLabel:"🚐 Van camp" },
-  { date:"2026-09-24", dow:"Thu", dom:"24", location:"Henningsvær", detail:"Explore Henningsvær — football pitch on the rocks, harbour walk, coffee. Van camp nearby.", night:"van", nightLabel:"🚐 Van camp" },
-  { date:"2026-09-25", dow:"Fri", dom:"25", travel:"🚐 Drive E10 west toward Reine", location:"Near Reine", detail:"Scenic drive along E10. Find a wild camp spot near Reine with mountain views. Scout Reinebringen trail for tomorrow.", night:"van", nightLabel:"🚐 Van camp" },
-  { date:"2026-09-26", dow:"Sat", dom:"26", location:"Reine", detail:"Early sunrise hike up Reinebringen. Afternoon exploring Reine village. Fish soup at Sakrisøy restaurant.", night:"van", nightLabel:"🚐 Van camp" },
-  { date:"2026-09-27", dow:"Sun", dom:"27", travel:"🛖 Check in to Sakrisøy Rorbuer", location:"Sakrisøy / Reine", detail:"Day trip to Å (westernmost point). Kayak if weather allows. Check into Sakrisøy Rorbuer — the one splurge night. Dinner at the rorbu restaurant.", night:"rorbu", nightLabel:"🛖 Rorbu ✨" },
-  { date:"2026-09-28", dow:"Mon", dom:"28", travel:"🚐 Check out → start drive north", location:"En route to Tromsø", detail:"Wake up in the rorbu, slow breakfast, soak it in. Check out, start the long drive north (~6 hrs). Stop at Nusfjord on the way. Van camp somewhere scenic.", night:"van", nightLabel:"🚐 Van camp" },
-  { date:"2026-09-29", dow:"Tue", dom:"29", travel:"🚐 Drive to Tromsø + drop van", location:"Tromsø", detail:"🎂 JILL'S BIRTHDAY! Finish drive to Tromsø. Drop van. Freshen up at hotel. Dinner at Emmas Under. Northern lights tour if skies are clear.", night:"hotel", nightLabel:"🏨 Hotel", section:"return", birthday:true },
-  { date:"2026-09-30", dow:"Wed", dom:"30", travel:"✈️ Fly out", location:"Tromsø → Oslo", detail:"Jill flies home. Fly to Oslo. End of an incredible trip!", night:"travel", nightLabel:"✈️ Flying", section:"end" },
+  { date:"2026-09-22", dow:"Tue", dom:"22", travel:"⛴️ Ferry + drive to Svolvær (~4 hrs)", location:"Svolvær", detail:"Andenes–Fiskebøl ferry (book ahead!). Drive south to Svolvær. Explore harbour, stock up on food. Evening drive to Henningsvær for sunset. Van camp near Svolvær.", night:"van", nightLabel:"🚐 Van camp", section:"lofoten" },
+  { date:"2026-09-23", dow:"Wed", dom:"23", location:"Svolvær area", detail:"Festvågtind hike (3 hrs, great panoramic views). Explore Svolvær. Van camp overnight.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-24", dow:"Thu", dom:"24", location:"Henningsvær", detail:"Short drive to Henningsvær (~30 min). Slow morning — football pitch, harbour walk, galleries, coffee. Van camp nearby overnight.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-25", dow:"Fri", dom:"25", travel:"🚐 Drive south via Nusfjord (~1.5 hrs)", location:"Near Ballstad / Reine area", detail:"Drive south on E10. Stop at Nusfjord — walk the preserved fishing village, old fish factory, harbour photos. Van camp somewhere scenic near Ballstad or Reine area.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-26", dow:"Sun", dom:"26", travel:"🛖 Check into Hattvika Lodge", location:"Hattvika Lodge, Ballstad", detail:"Check into Hattvika Lodge. Day trip to Reine — hike Reinebringen, Å village, Sakrisøy fish soup, Hamnøy bridge. Back to lodge for sauna + Fangst dinner.", night:"rorbu", nightLabel:"🛖 Hattvika Lodge" },
+  { date:"2026-09-27", dow:"Sun", dom:"27", location:"Hattvika Lodge, Ballstad", detail:"Slow morning at the lodge. Kayaking, explore Ballstad fishing village, sauna. Fangst restaurant dinner. Last lodge night.", night:"rorbu", nightLabel:"🛖 Hattvika Lodge" },
+  { date:"2026-09-28", dow:"Mon", dom:"28", travel:"🚐 Check out → drive north (~3 hrs)", location:"En route — Vestvågøy area", detail:"Slow breakfast, check out of Hattvika. Drive ~3 hrs north, find a scenic van camp spot around Vestvågøy or Gimsøy. Last van night — make it a good one.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-29", dow:"Tue", dom:"29", travel:"🚐 Finish drive to Tromsø (~3 hrs) + drop van", location:"Tromsø", detail:"🎂 JILL'S BIRTHDAY! Wake up in the van with a view, finish the drive to Tromsø (~3 hrs). Drop van (code XNGZE7). Check into hotel, freshen up. Birthday dinner at Emmas Under. Northern lights tour if skies are clear!", night:"hotel", nightLabel:"🏨 Hotel", section:"return", birthday:true },
+  { date:"2026-09-30", dow:"Wed", dom:"30", travel:"✈️ Fly out", location:"Tromsø → Oslo", detail:"Jill flies home (KLM Z8Z6RZ). Allie continues her trip. End of an incredible Norway chapter!", night:"travel", nightLabel:"✈️ Flying", section:"end" },
 ];
 
 function renderCalendar() {
