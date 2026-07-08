@@ -35,6 +35,9 @@
   --purple: #5b3a8a;
   --purple-bg: #f0eafa;
   --purple-border: #c4a8e8;
+  --local: #0c6b78;
+  --local-bg: #e2f4f5;
+  --local-border: #7fc8ce;
   --sidebar-w: 260px;
 }
 html, body { height: 100%; }
@@ -177,6 +180,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
 .del-btn { color: #ccc; background: none; border: none; font-size: 22px; cursor: pointer; line-height: 1; padding: 0 2px; flex-shrink: 0; }
 .hike-item { display: flex; align-items: flex-start; gap: 10px; padding: 11px 14px; background: var(--green-bg); border-radius: 10px; border: 1px solid #9fd4b2; margin-bottom: 8px; }
 .hike-text { flex: 1; font-size: 13px; color: var(--green); line-height: 1.5; }
+.hike-item.local-rec { background: var(--local-bg); border-color: var(--local-border); }
+.hike-item.local-rec .hike-text { color: #0a4a54; }
+.local-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.02em; padding: 2px 7px; border-radius: 6px; background: var(--local); color: white; margin-right: 6px; white-space: nowrap; vertical-align: middle; }
+.local-rec-callout { margin-top: 10px; padding: 11px 14px; background: var(--local-bg); border-left: 3px solid var(--local); border-radius: 8px; font-size: 13px; color: #0a4a54; line-height: 1.5; }
+.local-rec-callout .local-badge { margin-right: 8px; margin-bottom: 2px; }
 .link-item { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: var(--card); border-radius: 10px; border: 1px solid var(--border); margin-bottom: 8px; }
 .link-item a { flex: 1; font-size: 13px; color: var(--north); text-decoration: none; word-break: break-all; }
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
@@ -638,15 +646,15 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
 <script>
 // ══ STOP DATA ══
 const STOPS = [
-  { id:"tromso-start", name:"Tromsø", emoji:"🏔️", dates:"Sep 16–18", section:"base", mapQ:"Tromsø,+Norway", mapZoom:12, notes:"Arrive, pick up van Sep 18. Arctic Cathedral, cable car up Storsteinen. Get groceries and gear sorted.", todos:["Pick up van Sep 18","Stock up groceries & supplies","Arctic Cathedral","Cable car to Storsteinen","Download offline maps for Norway","Northern lights app: Space Weather Live"], hikes:[], stays:"", links:[] },
+  { id:"tromso-start", name:"Tromsø", emoji:"🏔️", dates:"Sep 16–18", section:"base", mapQ:"Tromsø,+Norway", mapZoom:12, notes:"Arrive, pick up van Sep 18. Arctic Cathedral, cable car up Storsteinen. Get groceries and gear sorted. 🇳🇴 Local's rec: Eide Handel for groceries — called one of the best grocery stores in Norway. Pust café or Frø café for food — Pust also has a harbor-side sauna available to rent.", todos:["Pick up van Sep 18","Stock up groceries & supplies","Arctic Cathedral","Cable car to Storsteinen","Download offline maps for Norway","Northern lights app: Space Weather Live","🇳🇴 Grocery run at Eide Handel"], hikes:["🇳🇴 Fjellheis trail (421m) — Sherpa-stair hike up to the Fløya viewpoint, cable car option back down"], stays:"", links:[] },
   { id:"lyngen", name:"Lyngen Alps", emoji:"⛰️", dates:"Sep 18", section:"north", mapQ:"Lyngen+Alps,+Nord-Lenangen,+Norway", mapZoom:11, notes:"Day trip detour en route to Senja. Glaciers meeting the fjord — a drive-through wow moment.", todos:["Stop at glacier viewpoint","Photo stop at fjord overlook","Continue to Senja same day"], hikes:["Short walk to glacier viewpoint (~1 hr, easy)"], stays:"", links:[] },
-  { id:"senja", name:"Senja Island", emoji:"🌊", dates:"Sep 18–20", section:"north", mapQ:"Senja,+Norway", mapZoom:11, notes:"Norway in miniature. Mountains plunging into the sea. Fewer tourists than Lofoten.", todos:["Hike Segla","Visit Husøy fishing village","Tungeneset viewpoint at golden hour","Find campsite near Skaland"], hikes:["Segla (3–4 hrs, moderate-hard — pyramid peak)","Tungeneset viewpoint walk (easy, 30 min)"], stays:"", links:[] },
-  { id:"andoya", name:"Andøya", emoji:"🐋", dates:"Sep 21–22", section:"north", mapQ:"Andenes,+8480,+Norway", mapZoom:11, notes:"Quieter and wilder than Lofoten. Bleik beach with massive sea stacks. Whale watching from Andenes.", todos:["Bleik beach & sea stacks","Decide on whale watching tour","Check Andenes–Fiskebøl ferry times","Drive south toward Svolvær"], hikes:["Coastal walk at Bleik (easy, 1 hr)"], stays:"", links:[] },
-  { id:"svolvaer", name:"Svolvær", emoji:"🎣", dates:"Sep 22–23", section:"lofoten", mapQ:"Svolvær,+8300,+Norway", mapZoom:12, notes:"Lofoten entry point. Dramatic bridge approach. Good base for the north of the islands.", todos:["Arrive and settle in","Explore Svolvær harbour","Evening drive to Henningsvær for sunset","Stock up on food"], hikes:["Festvågtind (3 hrs, panoramic views)","Svolværgeita — advanced only"], stays:"", links:[] },
-  { id:"henningsvær", name:"Henningsvær", emoji:"🏘️", dates:"Sep 24", section:"lofoten", mapQ:"Henningsvær,+8312,+Norway", mapZoom:13, notes:"Most photogenic fishing village in Lofoten. Built on tiny islands. Only 30 min from Svolvær — easy morning drive. Don't miss the football pitch on the rocks.", todos:["Walk the whole island","Find the famous football pitch","Sunset over the harbour","Coffee at Kræmmervika","Van camp nearby overnight"], hikes:["Walk around the island (easy, 1–2 hrs)"], stays:"", links:[] },
-  { id:"reine", name:"Reine / Å area", emoji:"⛰️", dates:"Sep 26–27 (day trips)", section:"lofoten", mapQ:"Reine,+8390,+Norway", mapZoom:13, notes:"Day trip from Hattvika Lodge (~45 min drive). Most dramatic scenery in Lofoten. Reinebringen hike, Sakrisøy fish soup, Å village at the end of the road.", todos:["Hike Reinebringen (early morning from Hattvika)","Drive to Å — end of the road","Fish soup at Sakrisøy restaurant","Hamnøy bridge photo stop","Explore Reine village"], hikes:["Reinebringen (2–3 hrs, steep but iconic — Sherpa steps, 1715 ft gain, 4.8★)","Walk to Å village (easy, flat)","Utakleiv beach sunset walk"], stays:"", links:[{label:"Reinebringen on AllTrails",url:"https://www.alltrails.com/trail/norway/nordland/reinebringen"},{label:"Hattvika Lodge (base — Ballstad)",url:"https://book.hattvikalodge.no/accommodation/room-group-info?langid=2&roomtypegroupid=0dd0fcd4-db5c-4dc2-a909-1979b51aa1df"},{label:"Sakrisøy Rorbuer",url:"https://www.sakrisoy-rorbuer.no"}] },
-  { id:"nusfjord", name:"Nusfjord", emoji:"🐟", dates:"Sep 25 (en route)", section:"lofoten", mapQ:"Nusfjord,+8380,+Norway", mapZoom:13, notes:"Tiny preserved historic fishing village, detour off E10 on the drive from Henningsvær to Hattvika. One of the oldest fishing villages in Norway — worth an hour or two.", todos:["Walk the village","Visit the old fish factory","Photo stop at the harbour","Continue to Hattvika after"], hikes:[], stays:"", links:[] },
-  { id:"tromso-end", name:"Back to Tromsø", emoji:"🎂", dates:"Sep 29–30", section:"base", mapQ:"Tromsø,+Norway", mapZoom:12, notes:"Drop van. Celebrate Jill's birthday! Northern lights if conditions are right. Jill flies Sep 30, then Oslo.", todos:["Drop off van","Dinner at Emmas Under (book ahead)","Northern lights tour?","🎂 Celebrate Jill's birthday!","Jill flies Sep 30 morning","Fly to Oslo"], hikes:[], stays:"", links:[] }
+  { id:"senja", name:"Senja Island", emoji:"🌊", dates:"Sep 18–20", section:"north", mapQ:"Senja,+Norway", mapZoom:11, notes:"Norway in miniature. Mountains plunging into the sea. Fewer tourists than Lofoten. 🇳🇴 Local's rec: base out near Fjordgård/Hamn for Segla + Hesten, swing by Tungeneset, and camp at Ersfjord Beach — her top pick on the island. A morning dip at Senjahopen if you're brave.", todos:["Hike Segla","Visit Husøy fishing village","Tungeneset viewpoint at golden hour","Find campsite near Skaland"], hikes:["Segla (3–4 hrs, moderate-hard — pyramid peak)","Tungeneset viewpoint walk (easy, 30 min)","🇳🇴 Hesten (556m, 4km RT, 2–3 hrs) — best view *of* Segla, trailhead at Fjordgård parking","🇳🇴 Knuten (110m) — easy, high-reward morning hike near Senjahopen","🇳🇴 Husfjellet (632m) near Skaland — one of the island's finest hikes"], stays:"🇳🇴 Local's rec: Ersfjord Beach (top camping pick), or free camping by Storvatnet / Husøy RV parking.", links:[] },
+  { id:"andoya", name:"Andøya", emoji:"🐋", dates:"Sep 21–22", section:"north", mapQ:"Andenes,+8480,+Norway", mapZoom:11, notes:"Quieter and wilder than Lofoten. Bleik beach with massive sea stacks. Whale watching from Andenes. 🇳🇴 Local's rec: Stave Camping (sauna + jacuzzi) as a base, cinnamon buns at Alveland en route. Andøya Space — Norway's only operational space center — is worth a stop. Dine at Arresten in Andenes.", todos:["Bleik beach & sea stacks","Decide on whale watching tour","Check Andenes–Fiskebøl ferry times","Drive south toward Svolvær"], hikes:["Coastal walk at Bleik (easy, 1 hr)","🇳🇴 Måtind (408m) — the classic, most iconic Andøya summit view","🇳🇴 Røyken (468m) or Andhauet (288m) — viewpoints over Bleik and Andenes"], stays:"🇳🇴 Local's rec: Stave Camping, or free camping along Nordmelaveien (west of Nordmela) / along the road west of Bleik.", links:[] },
+  { id:"svolvaer", name:"Svolvær", emoji:"🎣", dates:"Sep 22–23", section:"lofoten", mapQ:"Svolvær,+8300,+Norway", mapZoom:12, notes:"Lofoten entry point. Dramatic bridge approach. Good base for the north of the islands. 🇳🇴 Local's rec: detour to Kabelvåg for Hjørnet Kafé and Æ elske pizza (guide calls it chef's-kiss good), plus a sauna with a view at Nyvågar Rorbuhotell. På Kaikanten and Keans Beans are good coffee stops near Delp/Laukvika on the way in.", todos:["Arrive and settle in","Explore Svolvær harbour","Evening drive to Henningsvær for sunset","Stock up on food"], hikes:["Festvågtind (3 hrs, panoramic views)","Svolværgeita — advanced only","🇳🇴 Delpsheia (374m) near Laukvika/Delp — one of the guide's absolute favorite Lofoten views, combine with Matmora (788m) as a round trip"], stays:"", links:[] },
+  { id:"henningsvær", name:"Henningsvær", emoji:"🏘️", dates:"Sep 24", section:"lofoten", mapQ:"Henningsvær,+8312,+Norway", mapZoom:13, notes:"Most photogenic fishing village in Lofoten. Built on tiny islands. Only 30 min from Svolvær — easy morning drive. Don't miss the football pitch on the rocks. 🇳🇴 Local's rec: Trevarefabrikken has the best 'fika' in town. Camping right in Henningsvær isn't great — she suggests basing at Gimsøy or Hov instead, with dinner at Hov Farm.", todos:["Walk the whole island","Find the famous football pitch","Sunset over the harbour","Coffee at Kræmmervika","Van camp nearby overnight"], hikes:["Walk around the island (easy, 1–2 hrs)","🇳🇴 Heia (210m) — easier alternative to Festvågtind, 210m lower but still a great view"], stays:"🇳🇴 Local's rec: Hov camping, Rørvika, or the parking area at Gimsøya — better than camping right in town.", links:[] },
+  { id:"reine", name:"Reine / Å area", emoji:"⛰️", dates:"Sep 26–27 (day trips)", section:"lofoten", mapQ:"Reine,+8390,+Norway", mapZoom:13, notes:"Day trip from Hattvika Lodge (~45 min drive). Most dramatic scenery in Lofoten. Reinebringen hike, Sakrisøy fish soup, Å village at the end of the road. 🇳🇴 Local's rec: hike Reinebringen at sunrise or during the midnight sun to skip the crowds. Bringen café is a cozy pit-stop, and the bakery in Å makes great cinnamon buns in season. Reinefjorden ferries reach the trailhead for Helvetestind at Vindstad. Also near your Hattvika base: Sjokoladerommet (cakes) and Solsiden Brygge (pizza) in Ballstad, plus the white sand at Haukland and Vik.", todos:["Hike Reinebringen (early morning from Hattvika)","Drive to Å — end of the road","Fish soup at Sakrisøy restaurant","Hamnøy bridge photo stop","Explore Reine village"], hikes:["Reinebringen (2–3 hrs, steep but iconic — Sherpa steps, 1715 ft gain, 4.8★)","Walk to Å village (easy, flat)","Utakleiv beach sunset walk","🇳🇴 Helvetestind (602m) via ferry to Vindstad — off-the-beaten-path","🇳🇴 Himmeltind (462m) — highest peak on Vestvågøy, near Ballstad","🇳🇴 Ballstadheia (200m) — easy, view over the Ballstad fishing village"], stays:"🇳🇴 Local's rec: Moskenes Camping, Bunes Beach, or DNT Munkebu hut near Reine; Haukland, Vik, or Uttakleiv beach camping on the Ballstad side.", links:[{label:"Reinebringen on AllTrails",url:"https://www.alltrails.com/trail/norway/nordland/reinebringen"},{label:"Hattvika Lodge (base — Ballstad)",url:"https://book.hattvikalodge.no/accommodation/room-group-info?langid=2&roomtypegroupid=0dd0fcd4-db5c-4dc2-a909-1979b51aa1df"},{label:"Sakrisøy Rorbuer",url:"https://www.sakrisoy-rorbuer.no"}] },
+  { id:"nusfjord", name:"Nusfjord", emoji:"🐟", dates:"Sep 25 (en route)", section:"lofoten", mapQ:"Nusfjord,+8380,+Norway", mapZoom:13, notes:"Tiny preserved historic fishing village, detour off E10 on the drive from Henningsvær to Hattvika. One of the oldest fishing villages in Norway — worth an hour or two. 🇳🇴 Local's rec: Hansine's bakery for sweet treats and the Nusfjord country store for fresh waffles. Continue to Flakstad for Skagsanden beach and Ramberg right next door — both white sand, turquoise water.", todos:["Walk the village","Visit the old fish factory","Photo stop at the harbour","Continue to Hattvika after"], hikes:["🇳🇴 Ryten (543m) — overlooks Kvalvika beach, a popular wild-camping spot","🇳🇴 Flakstadtind (484m)"], stays:"", links:[] },
+  { id:"tromso-end", name:"Back to Tromsø", emoji:"🎂", dates:"Sep 29–30", section:"base", mapQ:"Tromsø,+Norway", mapZoom:12, notes:"Drop van. Celebrate Jill's birthday! Northern lights if conditions are right. Jill flies Sep 30, then Oslo. 🇳🇴 Local's rec: if the weather's good and you want one more hike, Tromsålstinden (1238m) is the guide's pick for a full-day summit near town. Otherwise, Pust café's harbor sauna is a nice low-key birthday option.", todos:["Drop off van","Dinner at Emmas Under (book ahead)","Northern lights tour?","🎂 Celebrate Jill's birthday!","Jill flies Sep 30 morning","Fly to Oslo"], hikes:["🇳🇴 Tromsdalstinden (1238m) — big full-day hike, weather-dependent"], stays:"", links:[] }
 ];
 
 const SEC = {
@@ -737,6 +745,67 @@ if (!saved._pack) data._pack = {};
 else data._pack = saved._pack;
 if (!saved._plan) data._plan = {};
 else data._plan = saved._plan;
+
+// ══ ONE-TIME MERGE: local's-rec content into existing saved data ══
+// (Needed because saved localStorage data otherwise overrides these fields entirely,
+// even after the STOPS defaults above are updated.)
+const LOCAL_RECS = {
+  "tromso-start": {
+    notesAdd: "🇳🇴 Local's rec: Eide Handel for groceries — called one of the best grocery stores in Norway. Pust café or Frø café for food — Pust also has a harbor-side sauna available to rent.",
+    hikesAdd: ["🇳🇴 Fjellheis trail (421m) — Sherpa-stair hike up to the Fløya viewpoint, cable car option back down"]
+  },
+  "senja": {
+    notesAdd: "🇳🇴 Local's rec: base out near Fjordgård/Hamn for Segla + Hesten, swing by Tungeneset, and camp at Ersfjord Beach — her top pick on the island. A morning dip at Senjahopen if you're brave.",
+    hikesAdd: ["🇳🇴 Hesten (556m, 4km RT, 2–3 hrs) — best view *of* Segla, trailhead at Fjordgård parking","🇳🇴 Knuten (110m) — easy, high-reward morning hike near Senjahopen","🇳🇴 Husfjellet (632m) near Skaland — one of the island's finest hikes"],
+    staysAdd: "🇳🇴 Local's rec: Ersfjord Beach (top camping pick), or free camping by Storvatnet / Husøy RV parking."
+  },
+  "andoya": {
+    notesAdd: "🇳🇴 Local's rec: Stave Camping (sauna + jacuzzi) as a base, cinnamon buns at Alveland en route. Andøya Space — Norway's only operational space center — is worth a stop. Dine at Arresten in Andenes.",
+    hikesAdd: ["🇳🇴 Måtind (408m) — the classic, most iconic Andøya summit view","🇳🇴 Røyken (468m) or Andhauet (288m) — viewpoints over Bleik and Andenes"],
+    staysAdd: "🇳🇴 Local's rec: Stave Camping, or free camping along Nordmelaveien (west of Nordmela) / along the road west of Bleik."
+  },
+  "svolvaer": {
+    notesAdd: "🇳🇴 Local's rec: detour to Kabelvåg for Hjørnet Kafé and Æ elske pizza (guide calls it chef's-kiss good), plus a sauna with a view at Nyvågar Rorbuhotell. På Kaikanten and Keans Beans are good coffee stops near Delp/Laukvika on the way in.",
+    hikesAdd: ["🇳🇴 Delpsheia (374m) near Laukvika/Delp — one of the guide's absolute favorite Lofoten views, combine with Matmora (788m) as a round trip"]
+  },
+  "henningsvær": {
+    notesAdd: "🇳🇴 Local's rec: Trevarefabrikken has the best 'fika' in town. Camping right in Henningsvær isn't great — she suggests basing at Gimsøy or Hov instead, with dinner at Hov Farm.",
+    hikesAdd: ["🇳🇴 Heia (210m) — easier alternative to Festvågtind, 210m lower but still a great view"],
+    staysAdd: "🇳🇴 Local's rec: Hov camping, Rørvika, or the parking area at Gimsøya — better than camping right in town."
+  },
+  "reine": {
+    notesAdd: "🇳🇴 Local's rec: hike Reinebringen at sunrise or during the midnight sun to skip the crowds. Bringen café is a cozy pit-stop, and the bakery in Å makes great cinnamon buns in season. Reinefjorden ferries reach the trailhead for Helvetestind at Vindstad. Also near your Hattvika base: Sjokoladerommet (cakes) and Solsiden Brygge (pizza) in Ballstad, plus the white sand at Haukland and Vik.",
+    hikesAdd: ["🇳🇴 Helvetestind (602m) via ferry to Vindstad — off-the-beaten-path","🇳🇴 Himmeltind (462m) — highest peak on Vestvågøy, near Ballstad","🇳🇴 Ballstadheia (200m) — easy, view over the Ballstad fishing village"],
+    staysAdd: "🇳🇴 Local's rec: Moskenes Camping, Bunes Beach, or DNT Munkebu hut near Reine; Haukland, Vik, or Uttakleiv beach camping on the Ballstad side."
+  },
+  "nusfjord": {
+    notesAdd: "🇳🇴 Local's rec: Hansine's bakery for sweet treats and the Nusfjord country store for fresh waffles. Continue to Flakstad for Skagsanden beach and Ramberg right next door — both white sand, turquoise water.",
+    hikesAdd: ["🇳🇴 Ryten (543m) — overlooks Kvalvika beach, a popular wild-camping spot","🇳🇴 Flakstadtind (484m)"]
+  },
+  "tromso-end": {
+    notesAdd: "🇳🇴 Local's rec: if the weather's good and you want one more hike, Tromsdalstinden (1238m) is the guide's pick for a full-day summit near town. Otherwise, Pust café's harbor sauna is a nice low-key birthday option.",
+    hikesAdd: ["🇳🇴 Tromsdalstinden (1238m) — big full-day hike, weather-dependent"]
+  }
+};
+const LOCALREC_VERSION = 1;
+if ((saved._localRecVersion||0) < LOCALREC_VERSION) {
+  Object.keys(LOCAL_RECS).forEach(id => {
+    const rec = LOCAL_RECS[id];
+    const sd = data[id];
+    if (!sd) return;
+    if (rec.notesAdd && !String(sd.notes||"").includes("🇳🇴")) {
+      sd.notes = (sd.notes ? sd.notes.trim() + " " : "") + rec.notesAdd;
+    }
+    if (rec.hikesAdd) {
+      rec.hikesAdd.forEach(h => { if (!sd.hikes.includes(h)) sd.hikes.push(h); });
+    }
+    if (rec.staysAdd && !String(sd.stays||"").includes("🇳🇴")) {
+      sd.stays = sd.stays ? sd.stays.trim() + " " + rec.staysAdd : rec.staysAdd;
+    }
+  });
+  data._localRecVersion = LOCALREC_VERSION;
+}
+
 saveData();
 
 // ══ PAGE ROUTING ══
@@ -902,7 +971,9 @@ function renderTabContent() {
 
   let html = "";
   if (currentTab === "overview") {
-    html = `<div class="note-box" style="background:${sec.bg};border-left-color:${sec.border};color:#2d3748">${esc(sd.notes)}</div>
+    const { main, rec } = splitLocalRec(sd.notes);
+    html = `<div class="note-box" style="background:${sec.bg};border-left-color:${sec.border};color:#2d3748">${esc(main||sd.notes)}</div>
+    ${rec ? `<div class="local-rec-callout"><span class="local-badge">🇳🇴 Local's rec</span>${esc(rec)}</div>` : ""}
     <div class="stats-grid">
       <div class="stat-card"><div class="stat-label">Things to do</div><div class="stat-val">${sd.todos.length}</div></div>
       <div class="stat-card"><div class="stat-label">Hikes planned</div><div class="stat-val">${sd.hikes.length}</div></div>
@@ -913,10 +984,15 @@ function renderTabContent() {
     const items = sd.todos.map((t,i) => { const done=sd.checked["t"+i]||false; return `<div class="todo-item"><div class="checkbox ${done?"checked":""}" onclick="toggleTodo(${i})"></div><div class="todo-text ${done?"done":""}">${esc(t)}</div><button class="del-btn" onclick="delTodo(${i})">×</button></div>`; }).join("");
     html = `<div class="card">${items||'<div class="empty">No tasks yet</div>'}</div><div class="input-row"><input type="text" id="newTodo" placeholder="Add a task..." onkeydown="if(event.key==='Enter')addTodo()"><button class="add-btn btn-dark" onclick="addTodo()">Add</button></div>`;
   } else if (currentTab === "hikes") {
-    const items = sd.hikes.map((h,i) => `<div class="hike-item"><span>🥾</span><div class="hike-text">${esc(h)}</div><button class="del-btn" onclick="delHike(${i})" style="color:#9fd4b2">×</button></div>`).join("");
+    const items = sd.hikes.map((h,i) => {
+      const isLocal = h.trim().startsWith("🇳🇴");
+      const text = isLocal ? h.replace(/^🇳🇴\s*/, "") : h;
+      return `<div class="hike-item ${isLocal?"local-rec":""}"><span>${isLocal?"🇳🇴":"🥾"}</span><div class="hike-text">${isLocal?'<span class="local-badge">Local\'s rec</span>':""}${esc(text)}</div><button class="del-btn" onclick="delHike(${i})" style="color:#9fd4b2">×</button></div>`;
+    }).join("");
     html = `${items||'<div class="empty">No hikes added yet</div>'}<div class="input-row"><input type="text" id="newHike" placeholder="Add a hike or walk..." onkeydown="if(event.key==='Enter')addHike()"><button class="add-btn btn-green" onclick="addHike()">Add</button></div>`;
   } else if (currentTab === "stays") {
-    html = `<div style="font-size:13px;color:var(--muted);margin-bottom:10px">Where are you sleeping? Campsite, rorbu, hostel...</div><textarea oninput="updateField('stays',this.value)" placeholder="e.g. Eliassen Rorbuer, Hamnøy. Check-in 3pm.">${esc(sd.stays)}</textarea><div class="tip-box">💡 Reine rorbuer book up fast — search "rorbu Lofoten" on Airbnb early.</div>`;
+    const { main, rec } = splitLocalRec(sd.stays);
+    html = `<div style="font-size:13px;color:var(--muted);margin-bottom:10px">Where are you sleeping? Campsite, rorbu, hostel...</div><textarea oninput="updateField('stays',this.value)" placeholder="e.g. Eliassen Rorbuer, Hamnøy. Check-in 3pm.">${esc(sd.stays)}</textarea>${rec ? `<div class="local-rec-callout"><span class="local-badge">🇳🇴 Local's rec</span>${esc(rec)}</div>` : ""}<div class="tip-box">💡 Reine rorbuer book up fast — search "rorbu Lofoten" on Airbnb early.</div>`;
   } else if (currentTab === "links") {
     const items = sd.links.map((l,i) => `<div class="link-item"><span>🔗</span><a href="${esc(l.url)}" target="_blank">${esc(l.label)}</a><button class="del-btn" onclick="delLink(${i})">×</button></div>`).join("");
     html = `${items||'<div class="empty">No links saved yet</div>'}<div class="input-col"><input type="text" id="newLinkLabel" placeholder="Label (e.g. Reinebringen trail info)"><div class="input-row"><input type="url" id="newLinkUrl" placeholder="https://..." onkeydown="if(event.key==='Enter')addLink()"><button class="add-btn btn-blue" onclick="addLink()">Save</button></div></div>`;
@@ -925,6 +1001,14 @@ function renderTabContent() {
 }
 
 function esc(s) { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function splitLocalRec(text) {
+  const t = String(text||"");
+  const idx = t.indexOf("🇳🇴");
+  if (idx === -1) return { main: t, rec: null };
+  const main = t.slice(0, idx).trim();
+  let rec = t.slice(idx).replace(/^🇳🇴\s*/, "").replace(/^Local's rec:\s*/i, "").trim();
+  return { main, rec };
+}
 function sid() { return STOPS[currentIdx].id; }
 function updateField(f,v) { data[sid()][f]=v; saveData(); }
 function toggleTodo(i) { const c=data[sid()].checked; c["t"+i]=!c["t"+i]; saveData(); renderTabContent(); }
