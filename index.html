@@ -44,7 +44,6 @@ html, body { height: 100%; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
 .view { display: none; }
 .view.active { display: block; }
-
 /* ══ DESKTOP ══ */
 @media (min-width: 768px) {
   body { display: flex; height: 100vh; overflow: hidden; }
@@ -67,7 +66,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
   .tab-content { padding: 16px; }
   .map-section { padding: 0 16px 16px; }
 }
-
 /* ══ SIDEBAR ══ */
 .sidebar-header { padding: 18px 16px 14px; background: var(--navy); color: white; flex-shrink: 0; }
 .sidebar-eyebrow { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #7ab3cf; font-weight: 600; margin-bottom: 3px; }
@@ -90,7 +88,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
 .sidebar-bottom { display: flex; gap: 8px; padding: 10px 8px calc(16px + var(--safe-bottom)); flex-shrink: 0; }
 .sidebar-bottom-btn { flex: 1; padding: 8px; border-radius: 8px; border: 1px solid var(--border); background: white; font-size: 12px; cursor: pointer; font-weight: 500; }
 .sidebar-bottom-btn:disabled { opacity: 0.3; }
-
 /* ══ SHARED HEADER ══ */
 .page-header { padding: calc(20px + var(--safe-top)) 20px 16px; background: var(--navy); color: white; }
 .page-header-desk { padding: 28px 28px 20px; background: var(--navy); color: white; }
@@ -98,7 +95,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
 .pg-title { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; }
 .pg-sub { font-size: 13px; color: #7ab3cf; margin-top: 2px; }
 .page-header-desk .pg-title { font-size: 28px; }
-
 /* ══ HOME VIEW ══ */
 .home-map-wrap { background: var(--navy); }
 .gmap-frame { width: 100%; border: none; display: block; }
@@ -120,7 +116,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
 .route-stop-name { font-size: 14px; font-weight: 600; flex: 1; }
 .route-stop-dates { font-size: 12px; color: var(--muted); }
 .route-arrow { color: var(--muted); font-size: 16px; }
-
 /* ══ LINKS VIEW ══ */
 .links-body { padding: 20px; }
 .link-group { margin-bottom: 24px; }
@@ -136,7 +131,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
 .imp-link-badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; }
 .imp-link-arrow { color: var(--muted); font-size: 16px; flex-shrink: 0; }
 .link-note { font-size: 12px; color: var(--muted); padding: 8px 12px; background: var(--bg); border-radius: 8px; border: 1px solid var(--border); margin-bottom: 16px; line-height: 1.5; }
-
 /* ══ PACKING VIEW ══ */
 .pack-body { padding: 20px; }
 .pack-group { margin-bottom: 22px; }
@@ -154,7 +148,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
 .pack-tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 5px; flex-shrink: 0; }
 .pack-progress { height: 3px; background: var(--border); border-radius: 2px; margin-bottom: 8px; overflow: hidden; }
 .pack-progress-bar { height: 100%; background: var(--green); border-radius: 2px; transition: width 0.3s; }
-
 /* ══ STOP VIEW ══ */
 .mobile-header { background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
 .mobile-back { display: flex; align-items: center; gap: 6px; padding: calc(14px + var(--safe-top)) 16px 10px; font-size: 13px; color: var(--muted); background: none; border: none; cursor: pointer; width: 100%; }
@@ -171,7 +164,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; b
 .tabs::-webkit-scrollbar { display: none; }
 .tab-btn { padding: 11px 16px; border: none; border-bottom: 2px solid transparent; background: none; font-size: 13px; color: var(--muted); cursor: pointer; white-space: nowrap; font-weight: 500; margin-bottom: -1px; }
 .tab-btn.active { color: var(--text); border-bottom-color: var(--text); font-weight: 600; }
-
 /* ══ CONTENT COMPONENTS ══ */
 .note-box { padding: 12px 14px; border-radius: 10px; font-size: 13px; line-height: 1.65; border-left: 3px solid; margin-bottom: 14px; }
 .card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 10px; }
@@ -208,7 +200,6 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
 .btn-green { background: var(--green); color: white; }
 .btn-blue { background: var(--north); color: white; }
 .btn-amber { background: var(--amber); color: white; }
-
 /* Mobile bottom tab bar */
 .mobile-tab-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); display: flex; align-items: stretch; z-index: 300; padding-bottom: var(--safe-bottom); }
 .mobile-tab-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 4px 6px; border: none; background: none; cursor: pointer; gap: 3px; min-width: 0; }
@@ -216,45 +207,36 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
 .mobile-tab-label { font-size: 10px; font-weight: 500; color: var(--muted); white-space: nowrap; }
 .mobile-tab-btn.active .mobile-tab-label { color: var(--navy); font-weight: 700; }
 .mobile-tab-btn.active .mobile-tab-icon { transform: scale(1.1); }
-
 /* Stop prev/next nav (only shown inside stop view on mobile) */
 .stop-mobile-nav { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px calc(10px + var(--safe-bottom)); background: var(--card); border-top: 1px solid var(--border); position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; }
 .nav-btn { padding: 9px 18px; border-radius: 10px; border: 1px solid var(--border); background: white; font-size: 13px; cursor: pointer; font-weight: 500; }
 .nav-btn:disabled { opacity: 0.3; }
 .nav-ctr { font-size: 12px; color: var(--muted); }
-
 /* ══ CALENDAR VIEW ══ */
 .cal-body { padding: 16px 16px 40px; }
 @media (min-width: 768px) { .cal-body { padding: 20px 28px 40px; } }
-
 /* Legend */
 .cal-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 .cal-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); font-weight: 500; }
 .cal-legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
-
 /* Day rows */
 .cal-day { display: flex; align-items: stretch; gap: 0; margin-bottom: 6px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--card); }
 .cal-day.today { border-color: var(--north); box-shadow: 0 0 0 2px var(--north-bg); }
-
 .cal-date-col { width: 52px; min-width: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 4px; background: var(--bg); border-right: 1px solid var(--border); flex-shrink: 0; }
 .cal-dow { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
 .cal-dom { font-size: 20px; font-weight: 800; color: var(--text); line-height: 1; }
 .cal-month { font-size: 9px; color: var(--muted); margin-top: 1px; }
-
 .cal-content { flex: 1; padding: 10px 14px; min-width: 0; }
 .cal-location { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
 .cal-detail { font-size: 12px; color: var(--muted); line-height: 1.5; }
-
 .cal-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; padding: 10px 14px 10px 8px; gap: 5px; flex-shrink: 0; }
 .cal-night-badge { font-size: 10px; font-weight: 700; padding: 4px 9px; border-radius: 8px; white-space: nowrap; letter-spacing: 0.02em; }
 .cal-drive-badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: var(--bg); color: var(--muted); border: 1px solid var(--border); white-space: nowrap; }
-
 /* Night type colors */
 .night-hotel { background: #e8f4fd; color: #1a5f8a; }
 .night-rorbu { background: #fde8e8; color: #8b2020; }
 .night-van { background: #e6f5ec; color: #1e5c3a; }
 .night-travel { background: #f1eefe; color: #5b3a8a; }
-
 /* Section dividers */
 .cal-section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 16px 0 6px; display: flex; align-items: center; gap: 8px; }
 .cal-section-line { flex: 1; height: 1px; background: var(--border); }
@@ -274,10 +256,22 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
 .stay-card-status { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; }
 .stay-card-notes { font-size: 13px; color: var(--muted); line-height: 1.5; border-top: 1px solid var(--border); padding-top: 8px; margin-top: 2px; }
 .notes-card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+/* ══ FUNDS / SHARED COSTS ══ */
+.funds-summary { background: var(--card); border-radius: 12px; border: 1px solid var(--border); padding: 16px; margin-bottom: 10px; text-align: center; }
+.funds-summary-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.funds-summary-val { font-size: 30px; font-weight: 800; color: var(--green); letter-spacing: -0.02em; }
+.funds-summary-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.funds-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.funds-row:last-child { border-bottom: none; }
+.funds-row-name { font-size: 13px; font-weight: 600; }
+.funds-row-desc { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.45; }
+.funds-row-amt { font-size: 13px; font-weight: 700; white-space: nowrap; flex-shrink: 0; text-align: right; }
+.funds-row-amt.owed { color: var(--lofoten); }
+.funds-row-amt.settled { color: var(--green); }
 </style>
+
 </head>
 <body>
-
 <!-- ══ SIDEBAR ══ -->
 <div id="sidebar">
   <div class="sidebar-header">
@@ -285,7 +279,6 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     <div class="sidebar-title">Norway 🇳🇴</div>
     <div class="sidebar-sub">Tromsø loop with Allie</div>
   </div>
-
   <div style="padding: 8px 0 4px">
     <button class="sidebar-nav-item" id="snav-home" onclick="showPage('home')">
       <div class="sidebar-nav-icon" style="background:#e8f4fd">🗺️</div>
@@ -308,20 +301,16 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
       <div><div class="sidebar-nav-label">Calendar</div></div>
     </button>
   </div>
-
   <div class="sidebar-divider"></div>
   <div class="sidebar-section-label">Stops</div>
   <div class="sidebar-stops" id="sidebarStops"></div>
-
   <div class="sidebar-bottom">
     <button class="sidebar-bottom-btn" id="deskPrev" onclick="navigate(-1)">← Prev</button>
     <button class="sidebar-bottom-btn" id="deskNext" onclick="navigate(1)">Next →</button>
   </div>
 </div>
-
 <!-- ══ MAIN ══ -->
 <div id="main">
-
   <!-- HOME -->
   <div id="homeView" class="view active">
     <div class="page-header mobile-only">
@@ -352,7 +341,6 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
       <div class="route-overview" id="homeStopList"></div>
     </div>
   </div>
-
   <!-- IMPORTANT LINKS -->
   <div id="linksView" class="view">
     <div class="page-header mobile-only">
@@ -365,7 +353,93 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     </div>
     <div class="links-body">
       <div class="link-note">📌 Bookmark or screenshot these before you go — some may need wifi to load in Norway.</div>
-
+      <div class="link-group">
+        <div class="link-group-title">🏨 Hotels — both Tromsø nights booked</div>
+        <div class="imp-link-card">
+          <a class="imp-link-item" href="https://www.scandichotels.com/en/hotels/scandic-ishavshotel" target="_blank">
+            <div class="imp-link-icon" style="background:#e8f4fd">🏨</div>
+            <div class="imp-link-info">
+              <div class="imp-link-name">Scandic Ishavshotel — Sep 17–18 (arrival night)</div>
+              <div class="imp-link-desc">Fredrik Langesgt. 2, 9250 Tromsø · Booking.com <strong>6452303347</strong> · Twin room, 2 adults · NOK 1,845 paid · Check-in from 16:00, out by 12:00 · <strong>No breakfast on this rate</strong> — add at the desk or eat out</div>
+            </div>
+            <div class="imp-link-badge" style="background:var(--green-bg);color:var(--green)">Paid ✓</div>
+            <div class="imp-link-arrow">›</div>
+          </a>
+          <a class="imp-link-item" href="https://www.scandichotels.com/en/hotels/the-dock-69-39-by-scandic" target="_blank">
+            <div class="imp-link-icon" style="background:#fff0e6">🎂</div>
+            <div class="imp-link-info">
+              <div class="imp-link-name">The Dock 69°39 by Scandic — Sep 29–30 (birthday night)</div>
+              <div class="imp-link-desc">Skansegata 7, 9008 Tromsø · Booking.com <strong>6452346903</strong>, PIN <strong>1082</strong> · Superior Twin · NOK 2,958 ($316) paid · <strong>Breakfast included</strong> · Checkout opens 05:00 · Hotel: +47 77 78 08 00 · <strong>Non-refundable</strong></div>
+            </div>
+            <div class="imp-link-badge" style="background:var(--green-bg);color:var(--green)">Paid ✓</div>
+            <div class="imp-link-arrow">›</div>
+          </a>
+          <a class="imp-link-item" href="https://book.hattvikalodge.no/accommodation/room-group-info?langid=2&roomtypegroupid=0dd0fcd4-db5c-4dc2-a909-1979b51aa1df" target="_blank">
+            <div class="imp-link-icon" style="background:#fde8e8">🛖</div>
+            <div class="imp-link-info">
+              <div class="imp-link-name">Hattvika Lodge — Sep 25–27</div>
+              <div class="imp-link-desc">Myklebustbua #1, Ballstad · Booking # <strong>OJ41UU55CV</strong> · 5,600 NOK paid in full</div>
+            </div>
+            <div class="imp-link-badge" style="background:var(--green-bg);color:var(--green)">Paid ✓</div>
+            <div class="imp-link-arrow">›</div>
+          </a>
+        </div>
+      </div>
+      <div class="link-group">
+        <div class="link-group-title">✈️ Flights — KLM booking Z8Z6RZ</div>
+        <div class="imp-link-card">
+          <a class="imp-link-item" href="https://www.klm.com/trip/us/en/mytrip/reservation" target="_blank">
+            <div class="imp-link-icon" style="background:var(--purple-bg)">🛫</div>
+            <div class="imp-link-info">
+              <div class="imp-link-name">Outbound — Sep 16–17</div>
+              <div class="imp-link-desc">DL56 SLC→AMS (dep 16:35 Sep 16) · KL1201 AMS→OSL · SK4424 OSL→TOS, lands <strong>18:40 Sep 17</strong></div>
+            </div>
+            <div class="imp-link-arrow">›</div>
+          </a>
+          <a class="imp-link-item" href="https://www.klm.com/trip/us/en/mytrip/reservation" target="_blank">
+            <div class="imp-link-icon" style="background:var(--purple-bg)">🛬</div>
+            <div class="imp-link-info">
+              <div class="imp-link-name">Return — Wed Sep 30</div>
+              <div class="imp-link-desc">KL2955 (SAS) TOS <strong>10:50</strong>→OSL 12:45 · KL1202 OSL 14:10→AMS 16:00 · KL0609 AMS 17:30→SLC 19:30 · Leave the hotel by <strong>08:20</strong></div>
+            </div>
+            <div class="imp-link-badge" style="background:var(--amber-bg);color:var(--amber)">Early start</div>
+            <div class="imp-link-arrow">›</div>
+          </a>
+        </div>
+        <div class="link-note">⏱️ Oslo transfer is 1h25 (domestic → Schengen, same terminal — comfortable). Amsterdam is 1h30 and tighter: Schengen exit passport control plus extra US-gate security screening. Legal connection, but don't plan on shopping.</div>
+      </div>
+      <div class="link-group">
+        <div class="link-group-title">🚌 Tromsø airport ↔ city (4.5 km)</div>
+        <div class="imp-link-card">
+          <a class="imp-link-item" href="https://www.svipper.no/en" target="_blank">
+            <div class="imp-link-icon" style="background:var(--green-bg)">🚌</div>
+            <div class="imp-link-info">
+              <div class="imp-link-name">Bus 42 or 40 — best value</div>
+              <div class="imp-link-desc">NOK 50 pp · ~20 min · every ~10 min · Tap Visa/Mastercard onboard or use the <strong>Svipper</strong> app (replaced Troms Billett). <strong>No cash accepted.</strong></div>
+            </div>
+            <div class="imp-link-badge" style="background:var(--green-bg);color:var(--green)">Cheapest</div>
+            <div class="imp-link-arrow">›</div>
+          </a>
+          <a class="imp-link-item" href="https://bestarctic.com/norway-airport-express-tromso-airport-bus-timetable/" target="_blank">
+            <div class="imp-link-icon" style="background:#ddeef9">🚐</div>
+            <div class="imp-link-info">
+              <div class="imp-link-name">Flybussen airport express</div>
+              <div class="imp-link-desc">NOK 125 pp one-way (NOK 200 return) · Direct, no stops · Timed to flight arrivals, so it waits for delays</div>
+            </div>
+            <div class="imp-link-arrow">›</div>
+          </a>
+          <a class="imp-link-item" href="https://www.google.com/maps/dir/Troms%C3%B8+Airport+(TOS)/Fredrik+Langes+gate+2,+9008+Troms%C3%B8,+Norway" target="_blank">
+            <div class="imp-link-icon" style="background:var(--amber-bg)">🚕</div>
+            <div class="imp-link-info">
+              <div class="imp-link-name">Taxi — ~NOK 300–400 for the car</div>
+              <div class="imp-link-desc">~10 min door to door, queue outside arrivals. Split two ways it's barely more than two Flybuss tickets — the pick with two weeks of luggage.</div>
+            </div>
+            <div class="imp-link-badge" style="background:var(--amber-bg);color:var(--amber)">Sep 17 pick</div>
+            <div class="imp-link-arrow">›</div>
+          </a>
+        </div>
+        <div class="link-note">🛬 Sep 17: land 18:40, out of the terminal ~19:00, at the Scandic ~19:15. 🛫 Sep 30: flight at 10:50, so be at Langnes by 08:50 — leave The Dock by 08:20.</div>
+      </div>
       <div class="link-group">
         <div class="link-group-title">⛴️ Ferries — book ahead!</div>
         <div class="imp-link-card">
@@ -373,7 +447,7 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
             <div class="imp-link-icon" style="background:#ddeef9">⛴️</div>
             <div class="imp-link-info">
               <div class="imp-link-name">Gryllefjord–Andenes ferry — Sep 20 schedule</div>
-              <div class="imp-link-desc">Route 180, Torghatten. Only 2 sailings Sep 20 — 08:45 & 17:00. No reservations, ~30 vehicle capacity — catch the 08:45.</div>
+              <div class="imp-link-desc">Route 180, Torghatten. Only 2 sailings Sep 20 — 08:45 &amp; 17:00. No reservations, ~30 vehicle capacity — catch the 08:45.</div>
             </div>
             <div class="imp-link-badge" style="background:var(--lofoten-bg);color:var(--lofoten)">Arrive very early</div>
             <div class="imp-link-arrow">›</div>
@@ -399,7 +473,7 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
             <div class="imp-link-icon" style="background:#ddeef9">🗓️</div>
             <div class="imp-link-info">
               <div class="imp-link-name">177 Nordland</div>
-              <div class="imp-link-desc">All public transport & ferry schedules in the region</div>
+              <div class="imp-link-desc">All public transport &amp; ferry schedules in the region</div>
             </div>
             <div class="imp-link-arrow">›</div>
           </a>
@@ -413,7 +487,6 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
           </a>
         </div>
       </div>
-
       <div class="link-group">
         <div class="link-group-title">🚐 Van rental</div>
         <div class="imp-link-card">
@@ -429,25 +502,33 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
           <a class="imp-link-item" href="https://indiecampers.com/client/my-booking" target="_blank">
             <div class="imp-link-icon" style="background:var(--amber-bg)">📋</div>
             <div class="imp-link-info">
-              <div class="imp-link-name">Upload ID & driver's license</div>
+              <div class="imp-link-name">Upload ID &amp; driver's license</div>
               <div class="imp-link-desc">Required before pickup — do this now via client area</div>
             </div>
             <div class="imp-link-badge" style="background:var(--amber-bg);color:var(--amber)">Action needed</div>
             <div class="imp-link-arrow">›</div>
           </a>
+          <a class="imp-link-item" href="https://indiecampers.com/client/my-booking" target="_blank">
+            <div class="imp-link-icon" style="background:var(--lofoten-bg)">📍</div>
+            <div class="imp-link-info">
+              <div class="imp-link-name">Confirm Sep 29 drop-off location &amp; closing time</div>
+              <div class="imp-link-desc">This is the real constraint on birthday day — not hotel check-in. Also confirm whether pickup/drop-off is at the airport or in town.</div>
+            </div>
+            <div class="imp-link-badge" style="background:var(--lofoten-bg);color:var(--lofoten)">Check this</div>
+            <div class="imp-link-arrow">›</div>
+          </a>
           <a class="imp-link-item" href="https://help.indiecampers.com/hc/en-us" target="_blank">
             <div class="imp-link-icon" style="background:var(--base-bg)">❓</div>
             <div class="imp-link-info">
-              <div class="imp-link-name">Indie Campers Help & FAQs</div>
+              <div class="imp-link-name">Indie Campers Help &amp; FAQs</div>
               <div class="imp-link-desc">Online check-in opens ~Aug 19 (30 days before pickup)</div>
             </div>
             <div class="imp-link-arrow">›</div>
           </a>
         </div>
       </div>
-
       <div class="link-group">
-        <div class="link-group-title">🌤️ Weather & conditions</div>
+        <div class="link-group-title">🌤️ Weather &amp; conditions</div>
         <div class="imp-link-card">
           <a class="imp-link-item" href="https://www.yr.no/en/map/weather/2-607860/Norway/Troms%20og%20Finnmark/Troms%C3%B8/city" target="_blank">
             <div class="imp-link-icon" style="background:#e8f4fd">🌤️</div>
@@ -469,7 +550,7 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
             <div class="imp-link-icon" style="background:#f0eafa">🌌</div>
             <div class="imp-link-info">
               <div class="imp-link-name">Space Weather Live</div>
-              <div class="imp-link-desc">Northern lights forecast & KP index tracker</div>
+              <div class="imp-link-desc">Northern lights forecast &amp; KP index tracker</div>
             </div>
             <div class="imp-link-badge" style="background:var(--purple-bg);color:var(--purple)">Must have</div>
             <div class="imp-link-arrow">›</div>
@@ -477,14 +558,13 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
           <a class="imp-link-item" href="https://www.varsom.no/en/avalanche-forecasts/" target="_blank">
             <div class="imp-link-icon" style="background:#fde8e8">⛰️</div>
             <div class="imp-link-info">
-              <div class="imp-link-name">Varsom — avalanche & trail conditions</div>
+              <div class="imp-link-name">Varsom — avalanche &amp; trail conditions</div>
               <div class="imp-link-desc">Check before any hikes, especially Reinebringen</div>
             </div>
             <div class="imp-link-arrow">›</div>
           </a>
         </div>
       </div>
-
       <div class="link-group">
         <div class="link-group-title">🥾 Hiking</div>
         <div class="imp-link-card">
@@ -507,15 +587,14 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
           </a>
         </div>
       </div>
-
       <div class="link-group">
-        <div class="link-group-title">🏕️ Camping & stays</div>
+        <div class="link-group-title">🏕️ Camping &amp; stays</div>
         <div class="imp-link-card">
           <a class="imp-link-item" href="https://www.bobilguide.no" target="_blank">
             <div class="imp-link-icon" style="background:var(--green-bg)">🅿️</div>
             <div class="imp-link-info">
               <div class="imp-link-name">Bobilguide.no</div>
-              <div class="imp-link-desc">Motorhome & van parking spots across Norway</div>
+              <div class="imp-link-desc">Motorhome &amp; van parking spots across Norway</div>
             </div>
             <div class="imp-link-arrow">›</div>
           </a>
@@ -523,7 +602,7 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
             <div class="imp-link-icon" style="background:var(--green-bg)">🌲</div>
             <div class="imp-link-info">
               <div class="imp-link-name">Park4Night</div>
-              <div class="imp-link-desc">Wild camping & campervan spots — community rated</div>
+              <div class="imp-link-desc">Wild camping &amp; campervan spots — community rated</div>
             </div>
             <div class="imp-link-arrow">›</div>
           </a>
@@ -538,9 +617,8 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
           </a>
         </div>
       </div>
-
       <div class="link-group">
-        <div class="link-group-title">🚨 Emergency & practical</div>
+        <div class="link-group-title">🚨 Emergency &amp; practical</div>
         <div class="imp-link-card">
           <a class="imp-link-item" href="tel:112">
             <div class="imp-link-icon" style="background:#fde8e8">🚨</div>
@@ -576,10 +654,8 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
           </a>
         </div>
       </div>
-
     </div>
   </div>
-
   <!-- PACKING LIST -->
   <div id="packView" class="view">
     <div class="page-header mobile-only">
@@ -592,8 +668,6 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     </div>
     <div class="pack-body" id="packBody"></div>
   </div>
-
-
   <!-- PLANNING -->
   <div id="planView" class="view">
     <div class="page-header mobile-only">
@@ -606,7 +680,6 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     </div>
     <div class="plan-body" id="planBody"></div>
   </div>
-
   <!-- CALENDAR -->
   <div id="calView" class="view">
     <div class="page-header mobile-only">
@@ -619,7 +692,6 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     </div>
     <div class="cal-body" id="calBody"></div>
   </div>
-
   <div id="stopView" class="view">
     <div class="mobile-header mobile-only">
       <button class="mobile-back" onclick="showPage('home')">← Overview</button>
@@ -635,9 +707,7 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
       <button class="nav-btn" id="mobNext" onclick="navigate(1)">Next →</button>
     </div>
   </div>
-
 </div>
-
 <!-- MOBILE TAB BAR (mobile only) -->
 <div class="mobile-tab-bar" id="mobileTabBar">
   <button class="mobile-tab-btn active" id="mtab-home" onclick="showPage('home')">
@@ -665,11 +735,10 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
     <span class="mobile-tab-label">Stops</span>
   </button>
 </div>
-
 <script>
 // ══ STOP DATA ══
 const STOPS = [
-  { id:"tromso-start", name:"Tromsø", emoji:"🏔️", dates:"Sep 16–18", section:"base", mapQ:"Tromsø,+Norway", mapZoom:12, notes:"Arrive, pick up van Sep 18. Arctic Cathedral, cable car up Storsteinen. Get groceries and gear sorted. 🇳🇴 Local's rec: Eide Handel for groceries — called one of the best grocery stores in Norway. Pust café or Frø café for food — Pust also has a harbor-side sauna available to rent.", todos:["Pick up van Sep 18","Stock up groceries & supplies","Arctic Cathedral","Cable car to Storsteinen","Download offline maps for Norway","Northern lights app: Space Weather Live","🇳🇴 Grocery run at Eide Handel"], hikes:["🇳🇴 Fjellheis trail (421m) — Sherpa-stair hike up to the Fløya viewpoint, cable car option back down"], stays:"", links:[] },
+  { id:"tromso-start", name:"Tromsø", emoji:"🏔️", dates:"Sep 16–18", section:"base", mapQ:"Tromsø,+Norway", mapZoom:12, notes:"Arrive, pick up van Sep 18. Arctic Cathedral, cable car up Storsteinen. Get groceries and gear sorted. 🇳🇴 Local's rec: Eide Handel for groceries — called one of the best grocery stores in Norway. Pust café or Frø café for food — Pust also has a harbor-side sauna available to rent.", todos:["Land 18:40 Sep 17 — airport to hotel: taxi (~NOK 300–400/car, 10 min) or bus 42/40 (NOK 50 pp, ~20 min, tap card or Svipper app, no cash)","Check into Scandic Ishavshotel (Fredrik Langesgt. 2) — booking 6452303347","Breakfast NOT included Sep 18 — grab coffee + food on Storgata before van pickup","Pick up van Sep 18 (checkout by 12:00)","Stock up groceries & supplies","Arctic Cathedral","Cable car to Storsteinen","Download offline maps for Norway","Northern lights app: Space Weather Live","🇳🇴 Grocery run at Eide Handel"], hikes:["🇳🇴 Fjellheis trail (421m) — Sherpa-stair hike up to the Fløya viewpoint, cable car option back down"], stays:"Scandic Ishavshotel — Sep 17–18, twin room, 2 adults. Fredrik Langesgt. 2, 9250 Tromsø. Booking.com 6452303347. NOK 1,845 paid. Check-in from 16:00, checkout by 12:00. No meal included in the rate.", links:[{label:"Scandic Ishavshotel",url:"https://www.scandichotels.com/en/hotels/scandic-ishavshotel"},{label:"Svipper — Tromsø bus tickets app",url:"https://www.svipper.no/en"}] },
   { id:"lyngen", name:"Lyngen Alps", emoji:"⛰️", dates:"Sep 18", section:"north", mapQ:"Lyngen+Alps,+Nord-Lenangen,+Norway", mapZoom:11, notes:"Day trip detour en route to Senja. Glaciers meeting the fjord — a drive-through wow moment.", todos:["Stop at glacier viewpoint","Photo stop at fjord overlook","Continue to Senja same day"], hikes:["Short walk to glacier viewpoint (~1 hr, easy)"], stays:"", links:[] },
   { id:"senja", name:"Senja Island", emoji:"🌊", dates:"Sep 18–20", section:"north", mapQ:"Senja,+Norway", mapZoom:11, notes:"Norway in miniature. Mountains plunging into the sea. Fewer tourists than Lofoten. 🇳🇴 Local's rec: base out near Fjordgård/Hamn for Segla + Hesten, swing by Tungeneset, and camp at Ersfjord Beach — her top pick on the island. A morning dip at Senjahopen if you're brave.", todos:["Hike Segla","Visit Husøy fishing village","Tungeneset viewpoint at golden hour","Find campsite near Skaland","Gryllefjord–Andenes ferry Sep 20 — catch the 08:45 sailing (only 2 that day, next isn't until 17:00). No reservations, arrive early"], hikes:["Segla (3–4 hrs, moderate-hard — pyramid peak)","Tungeneset viewpoint walk (easy, 30 min)","🇳🇴 Hesten (556m, 4km RT, 2–3 hrs) — best view *of* Segla, trailhead at Fjordgård parking","🇳🇴 Knuten (110m) — easy, high-reward morning hike near Senjahopen","🇳🇴 Husfjellet (632m) near Skaland — one of the island's finest hikes"], stays:"🇳🇴 Local's rec: Ersfjord Beach (top camping pick), or free camping by Storvatnet / Husøy RV parking.", links:[{label:"Gryllefjord–Andenes ferry schedule — Sep 20 (Torghatten, Route 180)",url:"https://www.torghatten.no/en/our-routes/180?date=2026-09-20"}] },
   { id:"andoya", name:"Andøya", emoji:"🐋", dates:"Sep 21–22", section:"north", mapQ:"Andenes,+8480,+Norway", mapZoom:11, notes:"Quieter and wilder than Lofoten. Bleik beach with massive sea stacks. Whale watching from Andenes. 🇳🇴 Local's rec: Stave Camping (sauna + jacuzzi) as a base, cinnamon buns at Alveland en route. Andøya Space — Norway's only operational space center — is worth a stop. Dine at Arresten in Andenes.", todos:["Bleik beach & sea stacks","Decide on whale watching tour","Check Fiskebøl–Melbu ferry times — no reservations, arrive early","Drive south toward Svolvær"], hikes:["Coastal walk at Bleik (easy, 1 hr)","🇳🇴 Måtind (408m) — the classic, most iconic Andøya summit view","🇳🇴 Røyken (468m) or Andhauet (288m) — viewpoints over Bleik and Andenes"], stays:"🇳🇴 Local's rec: Stave Camping, or free camping along Nordmelaveien (west of Nordmela) / along the road west of Bleik.", links:[{label:"Directions: Andenes → Svolvær via Fiskebøl–Melbu ferry (opens real Google Maps — routes via ferry correctly)",url:"https://www.google.com/maps/dir/Andenes,+Norway/Melbu,+Norway/Fiskeb%C3%B8l,+Norway/Svolv%C3%A6r,+Norway"},{label:"Fiskebøl–Melbu ferry schedule — Sep 22 (Torghatten, Route 18-732)",url:"https://www.torghatten.no/our-routes/18-732?date=2026-09-22"}] },
@@ -677,15 +746,13 @@ const STOPS = [
   { id:"henningsvær", name:"Henningsvær", emoji:"🏘️", dates:"Sep 24", section:"lofoten", mapQ:"Henningsvær,+8312,+Norway", mapZoom:13, notes:"Most photogenic fishing village in Lofoten. Built on tiny islands. Only 30 min from Svolvær — easy morning drive. Don't miss the football pitch on the rocks. 🇳🇴 Local's rec: Trevarefabrikken has the best 'fika' in town. Camping right in Henningsvær isn't great — she suggests basing at Gimsøy or Hov instead, with dinner at Hov Farm.", todos:["Walk the whole island","Find the famous football pitch","Sunset over the harbour","Coffee at Kræmmervika","Van camp nearby overnight"], hikes:["Walk around the island (easy, 1–2 hrs)","🇳🇴 Heia (210m) — easier alternative to Festvågtind, 210m lower but still a great view"], stays:"🇳🇴 Local's rec: Hov camping, Rørvika, or the parking area at Gimsøya — better than camping right in town.", links:[] },
   { id:"reine", name:"Reine / Å area", emoji:"⛰️", dates:"Sep 26 (day trip)", section:"lofoten", mapQ:"Reine,+8390,+Norway", mapZoom:13, notes:"Day trip from Hattvika Lodge (~45 min drive). Most dramatic scenery in Lofoten. Reinebringen hike, Sakrisøy fish soup, Å village at the end of the road. 🇳🇴 Local's rec: hike Reinebringen at sunrise or during the midnight sun to skip the crowds. Bringen café is a cozy pit-stop, and the bakery in Å makes great cinnamon buns in season. Reinefjorden ferries reach the trailhead for Helvetestind at Vindstad. Also near your Hattvika base: Sjokoladerommet (cakes) and Solsiden Brygge (pizza) in Ballstad, plus the white sand at Haukland and Vik.", todos:["Hike Reinebringen (early morning from Hattvika)","Drive to Å — end of the road","Fish soup at Sakrisøy restaurant","Hamnøy bridge photo stop","Explore Reine village"], hikes:["Reinebringen (2–3 hrs, steep but iconic — Sherpa steps, 1715 ft gain, 4.8★)","Walk to Å village (easy, flat)","Utakleiv beach sunset walk","🇳🇴 Helvetestind (602m) via ferry to Vindstad — off-the-beaten-path","🇳🇴 Himmeltind (462m) — highest peak on Vestvågøy, near Ballstad","🇳🇴 Ballstadheia (200m) — easy, view over the Ballstad fishing village"], stays:"🇳🇴 Local's rec: Moskenes Camping, Bunes Beach, or DNT Munkebu hut near Reine; Haukland, Vik, or Uttakleiv beach camping on the Ballstad side.", links:[{label:"Reinebringen on AllTrails",url:"https://www.alltrails.com/trail/norway/nordland/reinebringen"},{label:"Hattvika Lodge (base — Ballstad)",url:"https://book.hattvikalodge.no/accommodation/room-group-info?langid=2&roomtypegroupid=0dd0fcd4-db5c-4dc2-a909-1979b51aa1df"},{label:"Sakrisøy Rorbuer",url:"https://www.sakrisoy-rorbuer.no"}] },
   { id:"nusfjord", name:"Nusfjord", emoji:"🐟", dates:"Sep 25 (en route)", section:"lofoten", mapQ:"Nusfjord,+8380,+Norway", mapZoom:13, notes:"Tiny preserved historic fishing village, detour off E10 on the drive from Henningsvær to Hattvika. One of the oldest fishing villages in Norway — worth an hour or two. 🇳🇴 Local's rec: Hansine's bakery for sweet treats and the Nusfjord country store for fresh waffles. Continue to Flakstad for Skagsanden beach and Ramberg right next door — both white sand, turquoise water.", todos:["Walk the village","Visit the old fish factory","Photo stop at the harbour","Continue to Hattvika after"], hikes:["🇳🇴 Ryten (543m) — overlooks Kvalvika beach, a popular wild-camping spot","🇳🇴 Flakstadtind (484m)"], stays:"", links:[] },
-  { id:"tromso-end", name:"Back to Tromsø", emoji:"🎂", dates:"Sep 29–30", section:"base", mapQ:"Tromsø,+Norway", mapZoom:12, notes:"Drop van. Celebrate Jill's birthday! Northern lights if conditions are right. Jill flies Sep 30, then Oslo. 🇳🇴 Local's rec: if the weather's good and you want one more hike, Tromsålstinden (1238m) is the guide's pick for a full-day summit near town. Otherwise, Pust café's harbor sauna is a nice low-key birthday option.", todos:["Drop off van","Dinner at Emmas Under (book ahead)","Northern lights tour?","🎂 Celebrate Jill's birthday!","Jill flies Sep 30 morning","Fly to Oslo"], hikes:["🇳🇴 Tromsdalstinden (1238m) — big full-day hike, weather-dependent"], stays:"", links:[] }
+  { id:"tromso-end", name:"Back to Tromsø", emoji:"🎂", dates:"Sep 29–30", section:"base", mapQ:"Tromsø,+Norway", mapZoom:12, notes:"Drop van. Celebrate Jill's birthday! Northern lights if conditions are right. Jill flies home Sep 30 at 10:50 — early start. 🇳🇴 Local's rec: if the weather's good and you want one more hike, Tromsdalstinden (1238m) is the guide's pick for a full-day summit near town. Otherwise, Pust café's harbor sauna is a nice low-key birthday option.", todos:["Drop off van (code XNGZE7) — confirm drop-off location & closing time in advance","Check into The Dock 69°39, Skansegata 7 — booking 6452346903, PIN 1082","Dinner at Emmas Under (book ahead) — ~8 min walk from the hotel","Nightcap at Upper Dock Brasserie & Bar, 10th floor","Northern lights tour?","🎂 Celebrate Jill's birthday!","Sep 30: breakfast included — confirm buffet opens by 07:00 (+47 77 78 08 00)","Sep 30: leave hotel 08:20 → Langnes by 08:50 → KL2955 departs 10:50"], hikes:["🇳🇴 Tromsdalstinden (1238m) — big full-day hike, weather-dependent"], stays:"The Dock 69°39 by Scandic — Sep 29–30, Superior Twin, 2 adults. Skansegata 7, 9008 Tromsø. Booking.com 6452346903, PIN 1082. NOK 2,958 ($316) paid — NON-REFUNDABLE. Breakfast included. Check-in 16:00–00:00, checkout 05:00–12:00. Tel +47 77 78 08 00.", links:[{label:"The Dock 69°39 by Scandic",url:"https://www.scandichotels.com/en/hotels/the-dock-69-39-by-scandic"},{label:"Upper Dock Brasserie & Bar (10th floor)",url:"https://www.scandichotels.com/en/hotels/the-dock-69-39-by-scandic/upper-dock-brasserie-bar"},{label:"Emmas Drømmekjøkken / Emmas Under",url:"https://www.emmasdrommekjokken.no"}] }
 ];
-
 const SEC = {
   north:   { color:"var(--north)",   bg:"var(--north-bg)",   border:"var(--north-border)",   label:"Northern route" },
   lofoten: { color:"var(--lofoten)", bg:"var(--lofoten-bg)", border:"var(--lofoten-border)", label:"Lofoten" },
   base:    { color:"var(--base)",    bg:"var(--base-bg)",    border:"var(--base-border)",     label:"Base" }
 };
-
 // ══ PACKING DATA ══
 const PACK_GROUPS = [
   { id:"van", label:"🚐 Indie Campers poptop — extras to bring", items:[
@@ -748,17 +815,14 @@ const PACK_GROUPS = [
     {t:"Small dry bag for hikes in rain"},
   ]}
 ];
-
 // ══ STATE ══
 let data = {};
 let currentIdx = 0;
 let currentTab = "overview";
 let currentPage = "home";
 const isMobile = () => window.innerWidth < 768;
-
 function loadData() { try { return JSON.parse(localStorage.getItem("nt7")||"{}"); } catch(e) { return {}; } }
 function saveData() { try { localStorage.setItem("nt7", JSON.stringify(data)); } catch(e) {} }
-
 const saved = loadData();
 STOPS.forEach(s => {
   const d = saved[s.id] || {};
@@ -768,7 +832,8 @@ if (!saved._pack) data._pack = {};
 else data._pack = saved._pack;
 if (!saved._plan) data._plan = {};
 else data._plan = saved._plan;
-
+if (!saved._funds) data._funds = {};
+else data._funds = saved._funds;
 // ══ ONE-TIME MERGE: local's-rec content into existing saved data ══
 // (Needed because saved localStorage data otherwise overrides these fields entirely,
 // even after the STOPS defaults above are updated.)
@@ -828,9 +893,53 @@ if ((saved._localRecVersion||0) < LOCALREC_VERSION) {
   });
   data._localRecVersion = LOCALREC_VERSION;
 }
-
+// ══ ONE-TIME MERGE: Tromsø hotel bookings + airport transport + return flights ══
+// Same reason as above — saved localStorage would otherwise mask the STOPS defaults.
+const BOOKING_MERGE = {
+  "tromso-start": {
+    todosAdd: [
+      "Land 18:40 Sep 17 — airport to hotel: taxi (~NOK 300–400/car, 10 min) or bus 42/40 (NOK 50 pp, ~20 min, tap card or Svipper app, no cash)",
+      "Check into Scandic Ishavshotel (Fredrik Langesgt. 2) — booking 6452303347",
+      "Breakfast NOT included Sep 18 — grab coffee + food on Storgata before van pickup"
+    ],
+    staysSet: "Scandic Ishavshotel — Sep 17–18, twin room, 2 adults. Fredrik Langesgt. 2, 9250 Tromsø. Booking.com 6452303347. NOK 1,845 paid. Check-in from 16:00, checkout by 12:00. No meal included in the rate.",
+    staysMarker: "6452303347",
+    linksAdd: [
+      {label:"Scandic Ishavshotel",url:"https://www.scandichotels.com/en/hotels/scandic-ishavshotel"},
+      {label:"Svipper — Tromsø bus tickets app",url:"https://www.svipper.no/en"}
+    ]
+  },
+  "tromso-end": {
+    todosAdd: [
+      "Check into The Dock 69°39, Skansegata 7 — booking 6452346903, PIN 1082",
+      "Nightcap at Upper Dock Brasserie & Bar, 10th floor",
+      "Sep 30: breakfast included — confirm buffet opens by 07:00 (+47 77 78 08 00)",
+      "Sep 30: leave hotel 08:20 → Langnes by 08:50 → KL2955 departs 10:50"
+    ],
+    staysSet: "The Dock 69°39 by Scandic — Sep 29–30, Superior Twin, 2 adults. Skansegata 7, 9008 Tromsø. Booking.com 6452346903, PIN 1082. NOK 2,958 ($316) paid — NON-REFUNDABLE. Breakfast included. Check-in 16:00–00:00, checkout 05:00–12:00. Tel +47 77 78 08 00.",
+    staysMarker: "6452346903",
+    linksAdd: [
+      {label:"The Dock 69°39 by Scandic",url:"https://www.scandichotels.com/en/hotels/the-dock-69-39-by-scandic"},
+      {label:"Upper Dock Brasserie & Bar (10th floor)",url:"https://www.scandichotels.com/en/hotels/the-dock-69-39-by-scandic/upper-dock-brasserie-bar"},
+      {label:"Emmas Drømmekjøkken / Emmas Under",url:"https://www.emmasdrommekjokken.no"}
+    ]
+  }
+};
+const BOOKING_VERSION = 1;
+if ((saved._bookingVersion||0) < BOOKING_VERSION) {
+  Object.keys(BOOKING_MERGE).forEach(id => {
+    const m = BOOKING_MERGE[id];
+    const sd = data[id];
+    if (!sd) return;
+    if (m.todosAdd) m.todosAdd.forEach(t => { if (!sd.todos.includes(t)) sd.todos.push(t); });
+    if (m.staysSet && !String(sd.stays||"").includes(m.staysMarker)) {
+      sd.stays = sd.stays ? m.staysSet + "\n\n" + sd.stays.trim() : m.staysSet;
+    }
+    if (m.linksAdd) m.linksAdd.forEach(l => { if (!sd.links.some(x => x.url === l.url)) sd.links.push(l); });
+  });
+  data._bookingVersion = BOOKING_VERSION;
+}
 saveData();
-
 // ══ PAGE ROUTING ══
 const PAGES = ["home","links","pack","plan","cal","stop"];
 function showPage(page, stopIdx) {
@@ -839,28 +948,23 @@ function showPage(page, stopIdx) {
     const el = document.getElementById(p+"View");
     if (el) el.classList.toggle("active", p === page);
   });
-
   // Sync sidebar nav items (desktop)
   ["home","links","pack","plan","cal"].forEach(p => {
     const btn = document.getElementById("snav-"+p);
     if (btn) btn.classList.toggle("active", p === page);
   });
-
   // Sync mobile tab bar
   ["home","links","pack","plan","cal","stop"].forEach(p => {
     const btn = document.getElementById("mtab-"+p);
     if (btn) btn.classList.toggle("active", p === page);
   });
-
   // Show/hide the stop prev/next nav only on stop page
   const stopNav = document.getElementById("stopMobileNav");
   if (stopNav) stopNav.style.display = page === "stop" ? "flex" : "none";
-
   // Deactivate sidebar stops if not on stop page
   document.querySelectorAll(".sidebar-stop").forEach(el => el.classList.toggle("active", page==="stop" && parseInt(el.dataset.idx)===currentIdx));
   document.getElementById("deskPrev").disabled = page !== "stop" || currentIdx === 0;
   document.getElementById("deskNext").disabled = page !== "stop" || currentIdx === STOPS.length-1;
-
   if (page === "pack") renderPacking();
   if (page === "plan") renderPlan();
   if (page === "cal") renderCalendar();
@@ -872,7 +976,6 @@ function showPage(page, stopIdx) {
   window.scrollTo({top:0});
   document.getElementById("main")?.scrollTo({top:0});
 }
-
 // ══ HOME ══
 function buildHomeStopList() {
   document.getElementById("homeStopList").innerHTML = STOPS.map((s, i) => {
@@ -885,7 +988,6 @@ function buildHomeStopList() {
     </div>`;
   }).join("");
 }
-
 // ══ SIDEBAR ══
 function buildSidebar() {
   document.getElementById("sidebarStops").innerHTML = STOPS.map((s, i) => {
@@ -896,13 +998,11 @@ function buildSidebar() {
     </div>`;
   }).join("");
 }
-
 // ══ PACKING ══
 function renderPacking() {
   let totalItems = 0, checkedItems = 0;
   PACK_GROUPS.forEach(g => { g.items.forEach((item, i) => { totalItems++; if (data._pack[g.id+"_"+i]) checkedItems++; }); });
   const pct = totalItems ? Math.round(checkedItems/totalItems*100) : 0;
-
   let html = `<div style="margin-bottom:20px">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
       <div style="font-size:13px;font-weight:600">${checkedItems} of ${totalItems} packed</div>
@@ -910,7 +1010,6 @@ function renderPacking() {
     </div>
     <div class="pack-progress"><div class="pack-progress-bar" style="width:${pct}%"></div></div>
   </div>`;
-
   PACK_GROUPS.forEach(g => {
     const done = g.items.filter((_, i) => data._pack[g.id+"_"+i]).length;
     html += `<div class="pack-group">
@@ -932,37 +1031,28 @@ function renderPacking() {
       </div>
     </div>`;
   });
-
   document.getElementById("packBody").innerHTML = html;
 }
-
 function togglePack(key) {
   data._pack[key] = !data._pack[key];
   saveData(); renderPacking();
 }
-
-
 // ══ STOP VIEW ══
 function navigate(dir) {
   const n = currentIdx + dir;
   if (n >= 0 && n < STOPS.length) { currentIdx = n; currentTab = "overview"; renderStop(); window.scrollTo({top:0}); document.getElementById("main")?.scrollTo({top:0}); }
 }
-
 function setTab(t) { currentTab = t; renderTabContent(); }
-
 function renderStop() {
   const s = STOPS[currentIdx];
   const sec = SEC[s.section];
   buildSidebar();
-
   document.getElementById("mobileStopTitle").innerHTML =
     `<div><div class="mobile-stop-name">${s.emoji} ${s.name}</div><div class="mobile-stop-dates">${s.dates}</div></div>
     <div class="stop-badge" style="background:${sec.bg};color:${sec.color};border:1px solid ${sec.border}">${sec.label}</div>`;
-
   document.getElementById("desktopStopHeader").innerHTML =
     `<div style="padding-bottom:16px"><div class="dsk-stop-name">${s.emoji} ${s.name}</div><div class="dsk-stop-dates">${s.dates}</div></div>
     <div class="stop-badge" style="background:${sec.bg};color:${sec.color};border:1px solid ${sec.border}">${sec.label}</div>`;
-
   const mapH = isMobile() ? 200 : 260;
   document.getElementById("stopMapSection").innerHTML =
     `<div class="map-label">Location</div>
@@ -971,27 +1061,22 @@ function renderStop() {
          width="100%" height="${mapH}" style="border:none;display:block"
          allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
      </div>`;
-
   const tabs = ["overview","todos","hikes","stays","links"];
   document.getElementById("stopTabs").innerHTML = tabs.map(t =>
     `<button class="tab-btn ${currentTab===t?"active":""}" onclick="setTab('${t}')">${t[0].toUpperCase()+t.slice(1)}</button>`
   ).join("");
-
   document.getElementById("mobCtr").textContent = `${currentIdx+1} / ${STOPS.length}`;
   document.getElementById("mobPrev").disabled = currentIdx === 0;
   document.getElementById("mobNext").disabled = currentIdx === STOPS.length-1;
   document.getElementById("deskPrev").disabled = currentIdx === 0;
   document.getElementById("deskNext").disabled = currentIdx === STOPS.length-1;
-
   renderTabContent();
 }
-
 function renderTabContent() {
   const s = STOPS[currentIdx];
   const sd = data[s.id];
   const sec = SEC[s.section];
   document.querySelectorAll(".tab-btn").forEach(b => { b.classList.toggle("active", b.textContent.toLowerCase() === currentTab); });
-
   let html = "";
   if (currentTab === "overview") {
     const { main, rec } = splitLocalRec(sd.notes);
@@ -1022,7 +1107,6 @@ function renderTabContent() {
   }
   document.getElementById("stopTabContent").innerHTML = html;
 }
-
 function esc(s) { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 function splitLocalRec(text) {
   const t = String(text||"");
@@ -1041,15 +1125,14 @@ function delHike(i) { data[sid()].hikes.splice(i,1); saveData(); renderTabConten
 function addHike() { const el=document.getElementById("newHike"); const v=el.value.trim(); if(!v) return; data[sid()].hikes.push(v); saveData(); el.value=""; renderTabContent(); document.getElementById("newHike")?.focus(); }
 function addLink() { const label=document.getElementById("newLinkLabel")?.value.trim(); const url=document.getElementById("newLinkUrl")?.value.trim(); if(!label||!url) return; data[sid()].links.push({label,url}); saveData(); renderTabContent(); }
 function delLink(i) { data[sid()].links.splice(i,1); saveData(); renderTabContent(); }
-
 // ══ PLANNING DATA ══
 const PRE_TRIP_TODOS = [
   { t:"Gryllefjord–Andenes ferry (Sep 20, Senja → Andøya) — only 2 sailings that day: 08:45 & 17:00. No reservations, ~30 vehicle capacity. Catch the 08:45 — missing it means a full day lost waiting for 17:00", tag:"urgent", link:"https://www.torghatten.no/en/our-routes/180?date=2026-09-20" },
   { t:"Fiskebøl–Melbu ferry (Sep 22, Andøya → Svolvær) — no reservations possible, first come first served. Plan to arrive 30–45 min early", tag:"soon", link:"https://www.torghatten.no/our-routes/18-732?date=2026-09-22" },
   { t:"✅ Hattvika Lodge booked — 2 nights Sep 25–27 (Myklebustbua #1, Ballstad). Booking # OJ41UU55CV, 5,600 NOK paid in full", tag:"urgent", link:"https://book.hattvikalodge.no/accommodation/room-group-info?langid=2&roomtypegroupid=0dd0fcd4-db5c-4dc2-a909-1979b51aa1df" },
-  { t:"Book hotel in Tromsø — 1 night Sep 17 (arrival night, both Jill + Allie). Options: Scandic Ishavshotel, Malangen, Sommarøy", tag:"urgent" },
-  { t:"✅ Jill's flights booked — KLM code Z8Z6RZ, SLC→TOS Sep 16 (4:35pm), returns Sep 30. $1,989.13 on Amex", tag:"urgent" },
-  { t:"Book hotel in Tromsø for birthday night Sep 29 (1 night)", tag:"urgent" },
+  { t:"✅ Tromsø arrival night booked — Scandic Ishavshotel, Sep 17–18, twin room. Booking.com 6452303347, NOK 1,845 paid. No breakfast on this rate", tag:"urgent", link:"https://www.scandichotels.com/en/hotels/scandic-ishavshotel" },
+  { t:"✅ Jill's flights booked — KLM code Z8Z6RZ. Out: SLC→TOS Sep 16 (16:35), lands 18:40 Sep 17. Return Sep 30: KL2955 TOS 10:50→OSL, KL1202 OSL 14:10→AMS, KL0609 AMS 17:30→SLC 19:30. $1,989.13 on Amex", tag:"urgent" },
+  { t:"✅ Birthday night booked — The Dock 69°39 by Scandic, Sep 29–30, Superior Twin. Booking.com 6452346903 / PIN 1082, NOK 2,958 ($316) paid. Breakfast included, non-refundable", tag:"urgent", link:"https://www.scandichotels.com/en/hotels/the-dock-69-39-by-scandic" },
   { t:"✅ Indie Campers van booked — code XNGZE7, pickup Sep 18 Tromsø", tag:"urgent", link:"https://indiecampers.com/client/my-booking" },
   { t:"Upload ID/Passport + driver's license to Indie Campers client area (do this now!)", tag:"urgent", link:"https://indiecampers.com/client/my-booking" },
   { t:"Complete online check-in — opens ~Aug 19 (30 days before pickup)", tag:"soon", link:"https://indiecampers.com/client/my-booking" },
@@ -1062,28 +1145,37 @@ const PRE_TRIP_TODOS = [
   { t:"Notify bank/credit cards of Norway travel dates", tag:"soon" },
   { t:"Get some Norwegian kroner cash for backup", tag:"soon" },
   { t:"Research whale watching in Andenes — book if interested", tag:"optional", link:"https://www.whalesafari.no" },
-  { t:"Book dinner at Emmas Under, Tromsø for Jill's birthday (Sep 29)", tag:"soon", link:"https://www.emmasdrommekjokken.no" },
+  { t:"Book dinner at Emmas Under, Tromsø for Jill's birthday (Sep 29) — ~8 min walk from The Dock", tag:"soon", link:"https://www.emmasdrommekjokken.no" },
   { t:"Check Indie Campers app — learn van systems before pickup", tag:"soon" },
+  { t:"Confirm Indie Campers Sep 29 drop-off location & closing time — this is the real constraint on birthday day, not hotel check-in", tag:"urgent", link:"https://indiecampers.com/client/my-booking" },
+  { t:"Download the Svipper app (replaced Troms Billett) for Tromsø bus tickets — buses take Visa/Mastercard onboard too, but no cash", tag:"soon", link:"https://www.svipper.no/en" },
+  { t:"Add breakfast to the Scandic Ishavshotel rate, or plan a Storgata café stop before van pickup Sep 18", tag:"soon" },
+  { t:"Call The Dock (+47 77 78 08 00) closer to the date — confirm breakfast buffet opens by 07:00 for the 08:20 departure Sep 30", tag:"soon" },
+  { t:"Settle up with Allie — she owes ~$256.55 for the two Tromsø hotel nights", tag:"soon" },
+  { t:"Check the Indie Campers invoice — was the 'driver rights' fee inside the $662.61 a shared cost or Jill's alone?", tag:"optional" },
 ];
-
 const STAY_RECS = [
-  { name:"Scandic Ishavshotel", location:"Tromsø — Sep 17 (1 night)", notes:"Waterfront hotel right in central Tromsø. Great harbor views, walking distance to everything. Practical and solid for the arrival night. Also an option for Sep 29 birthday night.", status:"considering", statusStyle:"background:var(--amber-bg);color:var(--amber)" },
-  { name:"Malangen Resort", location:"Tromsø area — Sep 17 (1 night)", notes:"Luxury wilderness lodge on a fjord peninsula, ~45 min from Tromsø. Stunning northern lights spot. Worth it for the arrival night when you're jetlagged and want a proper bed.", status:"considering", statusStyle:"background:var(--amber-bg);color:var(--amber)" },
-  { name:"Sommarøy Arctic Hotel", location:"Tromsø area — Sep 17 (1 night)", notes:"Island hotel connected by bridge near Tromsø, right on the water. More classic hotel feel, closer to city. Good alternative to Malangen.", status:"considering", statusStyle:"background:var(--amber-bg);color:var(--amber)" },
+  { name:"Scandic Ishavshotel 🏨", location:"Tromsø — Sep 17–18 (arrival night)", notes:"Waterfront hotel on the quay at Fredrik Langesgt. 2, ship-shaped, right in central Tromsø. Twin room, 2 adults. Booking.com 6452303347, NOK 1,845 paid. Check-in from 16:00, checkout 12:00. No meal included — add breakfast at the desk or grab coffee on Storgata before van pickup.", status:"booked ✓", statusStyle:"background:var(--green-bg);color:var(--green)" },
   { name:"Indie Campers Poptop 4 🚐", location:"Everywhere else — Sep 18–24 & Sep 27–28", notes:"Van camp almost the whole trip! Allemannsretten (Norway's right to roam) means you can park almost anywhere in nature. Use Park4Night or Bobilguide to find the best spots. Wake up with fjord views every morning.", status:"van camping ✓", statusStyle:"background:var(--green-bg);color:var(--green)" },
-  { name:"Hattvika Lodge ⭐", location:"Ballstad — Sep 25–27 (2 nights)", notes:"Historic rorbu fishing village restored by local family. Onsite Fangst restaurant (sea-to-table, highly rated), sauna on the dock, kayaking. ~45 min from Reine so perfect base for day trips south. Room: Myklebustbua #1 (double bed, 35m²).", status:"booked ✓", statusStyle:"background:var(--green-bg);color:var(--green)" },
-  { name:"Tromsø hotel (birthday night)", location:"Tromsø — Sep 29", notes:"One night back in Tromsø for Jill's birthday — Emmas Under dinner, possible northern lights tour. Any central Tromsø hotel works, or book Malangen again if you loved it.", status:"book soon", statusStyle:"background:var(--north-bg);color:var(--north)" },
+  { name:"Hattvika Lodge ⭐", location:"Ballstad — Sep 25–27 (2 nights)", notes:"Historic rorbu fishing village restored by local family. Onsite Fangst restaurant (sea-to-table, highly rated), sauna on the dock, kayaking. ~45 min from Reine so perfect base for day trips south. Room: Myklebustbua #1 (double bed, 35m²). Booking # OJ41UU55CV, 5,600 NOK paid.", status:"booked ✓", statusStyle:"background:var(--green-bg);color:var(--green)" },
+  { name:"The Dock 69°39 by Scandic 🎂", location:"Tromsø — Sep 29–30 (birthday night)", notes:"Skansegata 7, in the converted Vervet shipyard where Amundsen's Gjøa was outfitted. ~8 min walk to Emmas Under, and Upper Dock Brasserie & Bar is on the 10th floor for a nightcap with harbour views. Superior Twin, breakfast included. Booking.com 6452346903 / PIN 1082, NOK 2,958 ($316) paid. NON-REFUNDABLE — if the drive north from Lofoten slips, the room is paid either way.", status:"booked ✓", statusStyle:"background:var(--green-bg);color:var(--green)" },
 ];
-
+// ══ SHARED COSTS (Jill ↔ Allie) ══
+const FUNDS_OWED = [
+  { name:"Scandic Ishavshotel — Sep 17", desc:"Jill paid NOK 1,845 (~$197). Booking.com 6452303347. Split 50/50.", amt:"$98.55" },
+  { name:"The Dock 69°39 — Sep 29", desc:"Jill paid NOK 2,958 ($316). Booking.com 6452346903. Split 50/50.", amt:"$158.00" },
+];
+const FUNDS_SETTLED = [
+  { name:"Campervan deposit", desc:"Jill sent Allie $573.44 (half deposit) + $662.61 (second half + driver rights) = $1,236.05. Allie booked the van.", amt:"$1,236.05" },
+  { name:"Hattvika Lodge", desc:"Jill paid 5,600 NOK in full; Allie reimbursed her half on 7/27.", amt:"$286.50" },
+];
 function renderPlan() {
   const pd = data._plan || {};
-
   // Count pre-trip todos
   const urgent = PRE_TRIP_TODOS.filter(t => t.tag === "urgent");
   const soon = PRE_TRIP_TODOS.filter(t => t.tag === "soon");
   const optional = PRE_TRIP_TODOS.filter(t => t.tag === "optional");
   const doneCount = PRE_TRIP_TODOS.filter((t, i) => pd["todo_"+i]).length;
-
   function todoHTML(items, offset) {
     return items.map((item, j) => {
       const i = PRE_TRIP_TODOS.indexOf(item);
@@ -1098,7 +1190,7 @@ function renderPlan() {
       </div>`;
     }).join("");
   }
-
+  const owedTotal = FUNDS_OWED.reduce((sum, f) => sum + parseFloat(f.amt.replace(/[$,]/g,"")), 0);
   let html = `
   <div class="plan-section">
     <div class="plan-section-header">
@@ -1114,7 +1206,33 @@ function renderPlan() {
       ${todoHTML(optional)}
     </div>
   </div>
-
+  <div class="plan-section">
+    <div class="plan-section-title" style="margin-bottom:10px">💰 Shared costs — Jill ↔ Allie</div>
+    <div class="funds-summary">
+      <div class="funds-summary-label">Allie owes Jill</div>
+      <div class="funds-summary-val">$${owedTotal.toFixed(2)}</div>
+      <div class="funds-summary-sub">≈ NOK ${(owedTotal * 9.357).toFixed(0)} · both Tromsø hotel nights</div>
+    </div>
+    <div class="card">
+      <div style="padding:10px 16px 4px;font-size:11px;font-weight:600;color:var(--lofoten);text-transform:uppercase;letter-spacing:0.08em">Outstanding</div>
+      ${FUNDS_OWED.map(f => `<div class="funds-row">
+        <div><div class="funds-row-name">${esc(f.name)}</div><div class="funds-row-desc">${esc(f.desc)}</div></div>
+        <div class="funds-row-amt owed">${esc(f.amt)}</div>
+      </div>`).join("")}
+      <div style="padding:10px 16px 4px;font-size:11px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:0.08em">Settled ✓</div>
+      ${FUNDS_SETTLED.map(f => `<div class="funds-row">
+        <div><div class="funds-row-name">${esc(f.name)}</div><div class="funds-row-desc">${esc(f.desc)}</div></div>
+        <div class="funds-row-amt settled">${esc(f.amt)}</div>
+      </div>`).join("")}
+    </div>
+    <div class="tip-box">💡 Not yet tracked: ferries, fuel, campsites and groceries. Those will dwarf $${owedTotal.toFixed(2)} by the end — consider settling this now and running a fresh tally from Sep 17 forward. Also worth checking whether the "driver rights" fee inside the $662.61 was shared or Jill's alone.</div>
+    <div class="sec-label">Running trip tally</div>
+    <div class="notes-card">
+      <textarea style="width:100%;min-height:120px;padding:14px 16px;border:none;font-size:14px;color:var(--text);background:var(--card);outline:none;font-family:inherit;line-height:1.65;resize:vertical;border-radius:12px"
+        placeholder="Log shared spending as you go — ferries, fuel, campsites, groceries. e.g. Sep 20 — Gryllefjord ferry NOK 850 (Jill paid)"
+        oninput="updateFundsNotes(this.value)">${esc((data._funds||{}).notes||"")}</textarea>
+    </div>
+  </div>
   <div class="plan-section">
     <div class="plan-section-title" style="margin-bottom:10px">🛖 Where to stay</div>
     ${STAY_RECS.map(s => `
@@ -1129,19 +1247,16 @@ function renderPlan() {
         <div class="stay-card-notes">${esc(s.notes)}</div>
       </div>`).join("")}
   </div>
-
   <div class="plan-section">
     <div class="plan-section-title" style="margin-bottom:10px">📝 General notes</div>
     <div class="notes-card">
-      <textarea style="width:100%;min-height:160px;padding:14px 16px;border:none;font-size:14px;color:var(--text);background:var(--card);outline:none;font-family:inherit;line-height:1.65;resize:vertical;border-radius:12px" 
-        placeholder="Anything else — ideas, Allie's suggestions, things to research..." 
+      <textarea style="width:100%;min-height:160px;padding:14px 16px;border:none;font-size:14px;color:var(--text);background:var(--card);outline:none;font-family:inherit;line-height:1.65;resize:vertical;border-radius:12px"
+        placeholder="Anything else — ideas, Allie's suggestions, things to research..."
         oninput="updatePlanNotes(this.value)">${esc(pd.notes||"")}</textarea>
     </div>
   </div>`;
-
   document.getElementById("planBody").innerHTML = html;
 }
-
 function togglePlanTodo(i) {
   if (!data._plan) data._plan = {};
   data._plan["todo_"+i] = !data._plan["todo_"+i];
@@ -1152,12 +1267,16 @@ function updatePlanNotes(v) {
   data._plan.notes = v;
   saveData();
 }
-
+function updateFundsNotes(v) {
+  if (!data._funds) data._funds = {};
+  data._funds.notes = v;
+  saveData();
+}
 // ══ CALENDAR ══
 const CAL_DAYS = [
   { date:"2026-09-16", dow:"Wed", dom:"16", travel:"✈️ Fly to Tromsø", location:"In the air", detail:"✈️ Jill: DL56 SLC→AMS, KL1201→OSL, SK4424→TOS. KLM booking Z8Z6RZ. Departs 4:35pm SLC. Allie's flight TBD.", night:"travel", nightLabel:"✈️ In flight", section:"arrival" },
-  { date:"2026-09-17", dow:"Thu", dom:"17", travel:"🛬 Arrive Tromsø 6:40pm", location:"Tromsø", detail:"Jill lands 6:40pm (KLM Z8Z6RZ). Meet up with Allie! Check into hotel. Rest up — long travel day. Van pickup tomorrow.", night:"hotel", nightLabel:"🏨 Hotel" },
-  { date:"2026-09-18", dow:"Fri", dom:"18", travel:"🚐 Pick up van → Lyngen → Senja", location:"Senja Island", detail:"Check out of hotel, pick up Indie Campers van (code XNGZE7). Drive through Lyngen Alps (photo stop). Arrive Senja, find a wild camp spot with a view.", night:"van", nightLabel:"🚐 Van camp", section:"north" },
+  { date:"2026-09-17", dow:"Thu", dom:"17", travel:"🛬 Arrive Tromsø 18:40", location:"Tromsø — Scandic Ishavshotel", detail:"Jill lands 18:40 (SK4424, KLM Z8Z6RZ). Out of the terminal ~19:00. Airport → hotel: taxi ~NOK 300–400/car, 10 min (the pick with two weeks of luggage), or bus 42/40, NOK 50 pp, ~20 min, every 10 min — tap Visa/Mastercard onboard or use the Svipper app, no cash. At the hotel ~19:15. Scandic Ishavshotel, Fredrik Langesgt. 2 — booking 6452303347, twin room, NOK 1,845 paid, check-in from 16:00. Meet up with Allie!", night:"hotel", nightLabel:"🏨 Scandic" },
+  { date:"2026-09-18", dow:"Fri", dom:"18", travel:"🚐 Pick up van → Lyngen → Senja", location:"Senja Island", detail:"No breakfast on the Scandic rate — coffee and food on Storgata (5 min walk). Checkout by 12:00. Pick up Indie Campers van (code XNGZE7). Drive through Lyngen Alps (photo stop). Arrive Senja, find a wild camp spot with a view.", night:"van", nightLabel:"🚐 Van camp", section:"north" },
   { date:"2026-09-19", dow:"Sat", dom:"19", location:"Senja Island", detail:"Hike Segla (3–4 hrs). Afternoon in Husøy fishing village. Golden hour at Tungeneset viewpoint.", night:"van", nightLabel:"🚐 Van camp" },
   { date:"2026-09-20", dow:"Sun", dom:"20", travel:"⛴️ Ferry Gryllefjord → Andenes (1h40m)", location:"Andøya", detail:"Morning on Senja, drive to Gryllefjord. Only 2 sailings this day (Sep shoulder season) — 08:45→10:25 and 17:00→18:40. Catch the 08:45! Missing it means waiting until 17:00, landing 18:40 with no daylight left for Bleik. No reservations — arrive well before 08:45. Bleik beach and sea stacks after arrival.", night:"van", nightLabel:"🚐 Van camp" },
   { date:"2026-09-21", dow:"Mon", dom:"21", location:"Andøya", detail:"Andenes whale watching or coastal walks. Check Fiskebøl ferry times for tomorrow.", night:"van", nightLabel:"🚐 Van camp" },
@@ -1167,15 +1286,13 @@ const CAL_DAYS = [
   { date:"2026-09-25", dow:"Fri", dom:"25", travel:"🚐 Drive south via Nusfjord → check into Hattvika Lodge", location:"Hattvika Lodge, Ballstad", detail:"Drive south on E10, stop at Nusfjord — walk the preserved fishing village, old fish factory, harbour photos. Continue to Ballstad and check into Hattvika Lodge (2 nights, booking # OJ41UU55CV, Myklebustbua #1).", night:"rorbu", nightLabel:"🛖 Hattvika Lodge" },
   { date:"2026-09-26", dow:"Sat", dom:"26", location:"Hattvika Lodge, Ballstad", detail:"Day trip to Reine — hike Reinebringen (sunrise recommended to beat the crowds), Å village, Sakrisøy fish soup, Hamnøy bridge. Back to lodge for sauna + Fangst dinner. Last lodge night.", night:"rorbu", nightLabel:"🛖 Hattvika Lodge" },
   { date:"2026-09-27", dow:"Sun", dom:"27", travel:"🚐 Check out → drive north (~3 hrs)", location:"En route — Vestvågøy area", detail:"Slow breakfast, check out of Hattvika. Drive north, find a scenic van camp spot around Vestvågøy or Gimsøy.", night:"van", nightLabel:"🚐 Van camp" },
-  { date:"2026-09-28", dow:"Mon", dom:"28", travel:"🚐 Buffer day — drive toward Tromsø", location:"En route north (Vesterålen area)", detail:"Extra buffer day before heading back to Tromsø. Relaxed drive north — maybe a stop at Kvitnes Farm for a farm-to-table lunch. Last van camping night — make it count!", night:"van", nightLabel:"🚐 Van camp" },
-  { date:"2026-09-29", dow:"Tue", dom:"29", travel:"🚐 Finish drive to Tromsø (~3 hrs) + drop van", location:"Tromsø", detail:"🎂 JILL'S BIRTHDAY! Wake up in the van with a view, finish the drive to Tromsø. Drop van (code XNGZE7). Check into hotel, freshen up. Birthday dinner at Emmas Under. Northern lights tour if skies are clear!", night:"hotel", nightLabel:"🏨 Hotel", section:"return", birthday:true },
-  { date:"2026-09-30", dow:"Wed", dom:"30", travel:"✈️ Fly out", location:"Tromsø → Oslo", detail:"Jill flies home (KLM Z8Z6RZ). Allie continues her trip. End of an incredible Norway chapter!", night:"travel", nightLabel:"✈️ Flying", section:"end" },
+  { date:"2026-09-28", dow:"Mon", dom:"28", travel:"🚐 Buffer day — drive toward Tromsø", location:"En route north (Vesterålen area)", detail:"Extra buffer day before heading back to Tromsø. Relaxed drive north — maybe a stop at Kvitnes Farm for a farm-to-table lunch. Last van camping night — make it count! Note: The Dock is non-refundable, so don't cut tomorrow's drive too fine.", night:"van", nightLabel:"🚐 Van camp" },
+  { date:"2026-09-29", dow:"Tue", dom:"29", travel:"🚐 Finish drive to Tromsø (~3 hrs) + drop van", location:"Tromsø — The Dock 69°39", detail:"🎂 JILL'S BIRTHDAY! Wake up in the van with a view, finish the drive to Tromsø. Drop van (code XNGZE7) — confirm the drop-off location and closing time in advance; that's the real constraint today, not check-in. Check into The Dock 69°39, Skansegata 7 (booking 6452346903, PIN 1082, Superior Twin, breakfast included). Birthday dinner at Emmas Under, ~8 min walk. Nightcap at Upper Dock Brasserie & Bar on the 10th floor. Northern lights tour if skies are clear!", night:"hotel", nightLabel:"🏨 The Dock", section:"return", birthday:true },
+  { date:"2026-09-30", dow:"Wed", dom:"30", travel:"✈️ Fly out 10:50 — leave hotel 08:20", location:"Tromsø → Oslo → Amsterdam → SLC", detail:"Breakfast is included (checkout opens 05:00) — confirm the buffet opens by 07:00. Leave The Dock 08:20, at Langnes by 08:50. KL2955 (SAS) TOS 10:50→OSL 12:45 · KL1202 OSL 14:10→AMS 16:00 · KL0609 AMS 17:30→SLC 19:30. ~16h40m door to door. Oslo transfer 1h25 (domestic→Schengen, same terminal, comfortable); Amsterdam 1h30 is tighter — Schengen exit passport control plus extra US-gate screening, so don't plan on shopping. Allie continues her trip. End of an incredible Norway chapter!", night:"travel", nightLabel:"✈️ Flying", section:"end" },
 ];
-
 function renderCalendar() {
   const sections = { arrival:"🏔️ Tromsø", north:"⛰️ Northern route", lofoten:"🎣 Lofoten Islands", return:"🏠 Return", end:"✈️ Fly out" };
   let currentSection = null;
-
   let html = `
   <div class="cal-legend">
     <div class="cal-legend-item"><div class="cal-legend-dot night-hotel"></div>Hotel</div>
@@ -1183,22 +1300,18 @@ function renderCalendar() {
     <div class="cal-legend-item"><div class="cal-legend-dot night-van"></div>Van camping 🚐</div>
     <div class="cal-legend-item"><div class="cal-legend-dot night-travel"></div>Travel day</div>
   </div>`;
-
   CAL_DAYS.forEach(day => {
     // Section header
     if (day.section && day.section !== currentSection) {
       currentSection = day.section;
       html += `<div class="cal-section-label">${sections[day.section]}<div class="cal-section-line"></div></div>`;
     }
-
     const travelHtml = day.travel
       ? `<div style="font-size:11px;font-weight:600;color:var(--purple);background:var(--purple-bg);border-radius:5px;padding:2px 7px;display:inline-block;margin-bottom:4px">${esc(day.travel)}</div>`
       : "";
-
     const birthdayHtml = day.birthday
       ? `<span style="font-size:12px;font-weight:700;color:#c05621;background:#fff0e6;border-radius:5px;padding:2px 8px">🎂 Jill's birthday!</span>`
       : "";
-
     html += `<div class="cal-day">
       <div class="cal-date-col">
         <div class="cal-dow">${day.dow}</div>
@@ -1215,12 +1328,10 @@ function renderCalendar() {
       </div>
     </div>`;
   });
-
   // Summary stats
   const hotels = CAL_DAYS.filter(d => d.night === "hotel").length;
   const rorbuer = CAL_DAYS.filter(d => d.night === "rorbu").length;
   const vanNights = CAL_DAYS.filter(d => d.night === "van").length;
-
   html += `<div style="margin-top:20px;padding:16px;background:var(--card);border-radius:12px;border:1px solid var(--border)">
     <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Nights breakdown</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
@@ -1238,10 +1349,8 @@ function renderCalendar() {
       </div>
     </div>
   </div>`;
-
   document.getElementById("calBody").innerHTML = html;
 }
-
 // ══ INIT ══
 document.getElementById("homeMapFrame").height = isMobile() ? 240 : 320;
 // Hide stop nav initially
